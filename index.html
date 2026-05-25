@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guía Marco Teórico — ULagos</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#0055B7;--blue-dark:#003D7A;--blue-light:#E6F1FB;--blue-mid:#B5D4F4;
+  --teal:#1D9E75;--teal-light:#E1F5EE;--amber:#BA7517;--amber-light:#FAEEDA;
+  --red:#A32D2D;--red-light:#FCEBEB;--gray-50:#F8F8F6;--gray-100:#F0EEE8;
+  --gray-200:#D4D2C8;--gray-400:#888780;--gray-700:#444441;--gray-900:#2C2C2A;
+  --white:#ffffff;--border:1px solid rgba(0,0,0,0.09);--radius:10px;
+  --radius-lg:16px;--shadow:0 2px 14px rgba(0,87,168,0.08);
+  --shadow-hover:0 6px 28px rgba(0,87,168,0.16);
+  --font-display:'Playfair Display',Georgia,serif;
+  --font-body:'Source Sans 3',system-ui,sans-serif;
+  /* BOTÓN VOLVER ARRIBA */
+  #btn-arriba {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: var(--blue); /* Usa el azul de tu paleta */
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,87,168,0.3);
+    display: none; /* Oculto por defecto */
+    z-index: 1000;
+    transition: background 0.3s, transform 0.2s;
+  }
+
+  #btn-arriba:hover {
+    background: var(--blue-dark);
+    transform: translateY(-3px);
+  }
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font-body);background:var(--gray-50);color:var(--gray-900);font-size:15px;line-height:1.65;}
+.site-header{background:var(--blue);color:#fff;position:sticky;top:0;z-index:100;box-shadow:0 2px 18px rgba(0,61,122,.28);}
+.header-inner{display:flex;align-items:center;gap:1.25rem;padding:.7rem 2rem;max-width:1120px;margin:0 auto;}
+.logo-mark{display:flex;flex-direction:column;gap:3px;flex-shrink:0;}
+.logo-mark span{display:block;background:#fff;border-radius:2px;}
+.bar-top{width:34px;height:4px;}.bar-wave{width:34px;height:4px;clip-path:polygon(0% 100%,10% 0%,20% 100%,30% 0%,40% 100%,50% 0%,60% 100%,70% 0%,80% 100%,90% 0%,100% 100%);border-radius:0;}.bar-bot{width:26px;height:4px;}
+.header-text h1{font-size:.95rem;font-weight:600;font-family:var(--font-body);}
+.header-text p{font-size:.75rem;opacity:.7;font-weight:300;}
+.header-badge{margin-left:auto;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:20px;padding:.22rem .8rem;font-size:.72rem;font-weight:500;white-space:nowrap;}
+.nav-strip{background:var(--blue-dark);overflow-x:auto;scrollbar-width:none;}
+.nav-strip::-webkit-scrollbar{display:none;}
+.nav-inner{display:flex;max-width:1120px;margin:0 auto;padding:0 2rem;}
+.nav-inner a{color:rgba(255,255,255,.72);text-decoration:none;font-size:.76rem;font-weight:500;padding:.55rem .95rem;white-space:nowrap;border-bottom:2px solid transparent;transition:all .2s;}
+.nav-inner a:hover{color:#fff;border-bottom-color:#fff;}
+.main{max-width:1120px;margin:0 auto;padding:2rem;}
+.hero{background:linear-gradient(135deg,var(--blue) 0%,var(--blue-dark) 100%);border-radius:var(--radius-lg);color:#fff;padding:2.5rem 2.5rem 2rem;margin-bottom:2rem;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;right:-50px;top:-50px;width:240px;height:240px;border-radius:50%;background:rgba(255,255,255,.05);}
+.hero::after{content:'';position:absolute;right:80px;bottom:-70px;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,.04);}
+.hero-eyebrow{font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;opacity:.6;margin-bottom:.4rem;}
+.hero h2{font-family:var(--font-display);font-size:2rem;font-weight:700;line-height:1.2;margin-bottom:.6rem;}
+.hero p{font-size:.9rem;opacity:.8;max-width:560px;line-height:1.65;}
+.hero-meta{margin-top:1.4rem;display:flex;gap:1.5rem;flex-wrap:wrap;}
+.hero-meta-item{font-size:.78rem;opacity:.65;}
+.hero-meta-item strong{opacity:1;font-weight:600;display:block;font-size:.85rem;}
+.section{margin-bottom:2.5rem;}
+.section-header{display:flex;align-items:center;gap:.75rem;margin-bottom:1.25rem;}
+.section-num{width:36px;height:36px;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;flex-shrink:0;}
+.section-title{font-family:var(--font-display);font-size:1.25rem;font-weight:600;color:var(--blue-dark);}
+.section-sub{font-size:.78rem;color:var(--gray-400);font-weight:400;}
+.card{background:#fff;border-radius:var(--radius);border:var(--border);padding:1.2rem 1.2rem .9rem;box-shadow:var(--shadow);transition:box-shadow .2s,transform .2s;}
+.card:hover{box-shadow:var(--shadow-hover);transform:translateY(-2px);}
+.card-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;margin-bottom:.7rem;}
+.ci-blue{background:var(--blue-light);}.ci-teal{background:var(--teal-light);}.ci-amber{background:var(--amber-light);}.ci-red{background:var(--red-light);}
+.card h3{font-size:.9rem;font-weight:600;margin-bottom:.35rem;}
+.card p{font-size:.8rem;color:var(--gray-700);line-height:1.55;}
+.ref-tag{display:inline-block;margin-top:.6rem;font-size:.7rem;background:var(--blue-light);color:var(--blue);padding:2px 8px;border-radius:20px;font-weight:500;}
+.info-box{border-radius:var(--radius);padding:.9rem 1.1rem;margin-bottom:1rem;}
+.info-box.blue{background:var(--blue-light);border-left:3px solid var(--blue);}
+.info-box.teal{background:var(--teal-light);border-left:3px solid var(--teal);}
+.info-box.amber{background:var(--amber-light);border-left:3px solid var(--amber);}
+.info-box.red{background:var(--red-light);border-left:3px solid var(--red);}
+.info-box strong{font-weight:600;display:block;margin-bottom:.3rem;font-size:.85rem;}
+.info-box p,.info-box li{font-size:.82rem;color:var(--gray-700);line-height:1.55;}
+.info-box ul{padding-left:1.1rem;}.info-box li{margin-bottom:.2rem;}
+.collapsible{margin-bottom:.7rem;}
+.collapse-trigger{width:100%;background:#fff;border:var(--border);border-radius:var(--radius);padding:.85rem 1.2rem;display:flex;align-items:center;gap:.7rem;cursor:pointer;text-align:left;box-shadow:var(--shadow);transition:background .15s;}
+.collapse-trigger:hover{background:var(--gray-50);}
+.ct-icon{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+.ct-blue{background:var(--blue-light);color:var(--blue);}.ct-teal{background:var(--teal-light);color:var(--teal);}.ct-amber{background:var(--amber-light);color:var(--amber);}
+.collapse-trigger h3{font-size:.87rem;font-weight:600;color:var(--gray-900);}
+.collapse-trigger p{font-size:.75rem;color:var(--gray-400);margin-top:1px;}
+.chevron{margin-left:auto;width:20px;height:20px;border-radius:50%;background:var(--gray-100);display:flex;align-items:center;justify-content:center;transition:transform .25s;flex-shrink:0;font-size:.65rem;}
+.collapse-trigger.open .chevron{transform:rotate(180deg);}
+.collapse-body{display:none;background:#fff;border:var(--border);border-top:none;border-radius:0 0 var(--radius) var(--radius);padding:1.2rem;}
+.collapse-body.open{display:block;animation:fadeIn .2s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+.activity{background:#fff;border-radius:var(--radius-lg);border:var(--border);box-shadow:var(--shadow);overflow:hidden;margin-bottom:1.25rem;}
+.activity-header{background:var(--blue);color:#fff;padding:.8rem 1.25rem;display:flex;align-items:center;gap:.75rem;}
+.activity-num{width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;flex-shrink:0;}
+.activity-title{font-size:.9rem;font-weight:600;}
+.activity-desc{font-size:.75rem;opacity:.75;}
+.activity-body{padding:1.25rem;}
+.nice-table{width:100%;border-collapse:collapse;font-size:.8rem;margin:.75rem 0;}
+.nice-table th{background:var(--blue);color:#fff;padding:.55rem .75rem;text-align:left;font-weight:600;font-size:.78rem;}
+.nice-table td{padding:.55rem .75rem;border-bottom:1px solid var(--gray-100);vertical-align:top;}
+.nice-table tr:last-child td{border-bottom:none;}
+.nice-table tr:nth-child(even) td{background:var(--gray-50);}
+.compare-table{width:100%;border-collapse:collapse;font-size:.8rem;margin:.75rem 0;}
+.compare-table th{padding:.55rem .85rem;font-weight:600;font-size:.78rem;text-align:left;}
+.compare-table th:first-child{background:var(--blue);color:#fff;}
+.compare-table th:last-child{background:var(--teal);color:#fff;}
+.compare-table td{padding:.55rem .85rem;border-bottom:1px solid var(--gray-100);vertical-align:top;}
+.compare-table tr:nth-child(even) td{background:var(--gray-50);}
+.quiz-section{background:#fff;border-radius:var(--radius-lg);border:var(--border);box-shadow:var(--shadow);overflow:hidden;}
+.quiz-header{background:linear-gradient(135deg,var(--blue-dark),var(--blue));padding:1.1rem 1.5rem;color:#fff;}
+.quiz-header h3{font-family:var(--font-display);font-size:1.1rem;font-weight:600;margin-bottom:.2rem;}
+.quiz-header p{font-size:.78rem;opacity:.75;}
+.quiz-body{padding:1.5rem;}
+.quiz-q{margin-bottom:1.5rem;}
+.quiz-q-text{font-size:.88rem;font-weight:600;color:var(--gray-900);margin-bottom:.75rem;padding:.75rem 1rem;background:var(--blue-light);border-radius:8px;border-left:3px solid var(--blue);}
+.quiz-q-num{font-size:.7rem;color:var(--blue);font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.3rem;}
+.quiz-options{display:flex;flex-direction:column;gap:.45rem;}
+.quiz-opt{display:flex;align-items:flex-start;gap:.65rem;padding:.6rem .85rem;border-radius:8px;border:1.5px solid var(--gray-200);cursor:pointer;transition:all .18s;font-size:.82rem;line-height:1.45;}
+.quiz-opt:hover{border-color:var(--blue-mid);background:var(--blue-light);}
+.quiz-opt.selected{border-color:var(--blue);background:var(--blue-light);}
+.quiz-opt.correct{border-color:var(--teal);background:var(--teal-light);color:#0F5441;}
+.quiz-opt.wrong{border-color:var(--red);background:var(--red-light);color:var(--red);}
+.quiz-opt-letter{width:22px;height:22px;border-radius:50%;background:var(--gray-100);display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;flex-shrink:0;margin-top:1px;}
+.quiz-opt.correct .quiz-opt-letter{background:var(--teal);color:#fff;}
+.quiz-opt.wrong .quiz-opt-letter{background:var(--red);color:#fff;}
+.quiz-opt.selected .quiz-opt-letter{background:var(--blue);color:#fff;}
+.quiz-feedback{display:none;margin-top:.6rem;padding:.6rem .85rem;border-radius:8px;font-size:.8rem;line-height:1.5;}
+.quiz-feedback.correct{background:var(--teal-light);color:#0A4030;border-left:3px solid var(--teal);}
+.quiz-feedback.wrong{background:var(--red-light);color:var(--red);border-left:3px solid var(--red);}
+.quiz-actions{display:flex;gap:.75rem;align-items:center;margin-top:1.25rem;padding-top:1rem;border-top:var(--border);}
+.btn-quiz{background:var(--blue);color:#fff;border:none;border-radius:8px;padding:.6rem 1.4rem;font-size:.83rem;font-weight:600;cursor:pointer;font-family:var(--font-body);transition:background .2s;}
+.btn-quiz:hover{background:var(--blue-dark);}
+.btn-quiz.secondary{background:#fff;color:var(--blue);border:1.5px solid var(--blue);}
+.btn-quiz.secondary:hover{background:var(--blue-light);}
+.quiz-score{display:none;background:linear-gradient(135deg,var(--blue-dark),var(--blue));color:#fff;border-radius:var(--radius);padding:1.25rem 1.5rem;text-align:center;margin-top:1rem;}
+.quiz-score h4{font-family:var(--font-display);font-size:1.3rem;margin-bottom:.3rem;}
+.quiz-score p{font-size:.85rem;opacity:.82;}
+.score-badge{font-size:2.5rem;font-weight:700;margin:.5rem 0;}
+.progress-wrap{background:#fff;border-radius:var(--radius);border:var(--border);padding:1.1rem 1.4rem;margin-bottom:2rem;box-shadow:var(--shadow);}
+.progress-label{font-size:.76rem;color:var(--gray-400);font-weight:500;margin-bottom:.5rem;display:flex;justify-content:space-between;}
+.progress-track{background:var(--gray-100);border-radius:100px;height:7px;}
+.progress-fill{height:7px;border-radius:100px;background:var(--blue);width:0%;transition:width .5s ease;}
+.checklist-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.1rem;}
+.cl-section{background:#fff;border-radius:var(--radius);border:var(--border);overflow:hidden;box-shadow:var(--shadow);}
+.cl-head{padding:.65rem 1rem;font-size:.78rem;font-weight:600;display:flex;align-items:center;gap:.4rem;}
+.cl-blue{background:var(--blue-light);color:var(--blue-dark);}.cl-teal{background:var(--teal-light);color:#0F5441;}.cl-amber{background:var(--amber-light);color:#5C3A00;}.cl-gray{background:var(--gray-100);color:var(--gray-700);}
+.cl-items{padding:.6rem .9rem;}
+.cl-item{display:flex;align-items:flex-start;gap:.55rem;padding:.45rem 0;border-bottom:.5px solid var(--gray-100);cursor:pointer;}
+.cl-item:last-child{border-bottom:none;}
+.cl-item input[type=checkbox]{width:15px;height:15px;accent-color:var(--blue);cursor:pointer;flex-shrink:0;margin-top:2px;}
+.cl-item label{font-size:.78rem;color:var(--gray-700);line-height:1.45;cursor:pointer;}
+.cl-item.checked label{text-decoration:line-through;color:var(--gray-400);}
+.bib-list{list-style:none;}
+.bib-list li{background:#fff;border:var(--border);border-radius:var(--radius);padding:.85rem 1rem;margin-bottom:.55rem;font-size:.8rem;color:var(--gray-700);line-height:1.55;box-shadow:var(--shadow);}
+.bib-list li strong{font-weight:600;color:var(--blue-dark);}
+.timeline{position:relative;padding-left:2rem;}
+.timeline::before{content:'';position:absolute;left:9px;top:0;bottom:0;width:2px;background:var(--blue-mid);}
+.tl-item{position:relative;margin-bottom:1.1rem;}
+.tl-dot{position:absolute;left:-2rem;top:4px;width:20px;height:20px;border-radius:50%;background:var(--blue);border:3px solid #fff;box-shadow:0 0 0 2px var(--blue);display:flex;align-items:center;justify-content:center;font-size:.58rem;font-weight:700;color:#fff;}
+.tl-content{background:#fff;border:var(--border);border-radius:var(--radius);padding:.7rem .95rem;box-shadow:var(--shadow);}
+.tl-week{font-size:.68rem;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.07em;margin-bottom:.2rem;}
+.tl-task{font-size:.8rem;color:var(--gray-700);}
+.error-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;}
+.error-card{background:#fff;border:var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);}
+.error-header{background:var(--red-light);padding:.65rem .9rem;}
+.error-header span{font-size:.8rem;font-weight:600;color:var(--red);}
+.error-body{padding:.9rem;}
+.error-body p{font-size:.78rem;color:var(--gray-700);margin-bottom:.45rem;}
+.wrong-ex{background:#FFF5F5;border-left:3px solid #E24B4A;border-radius:0 6px 6px 0;padding:.5rem .7rem;margin-bottom:.6rem;font-size:.77rem;color:var(--gray-700);font-style:italic;}
+.right-ex{background:var(--teal-light);border-left:3px solid var(--teal);border-radius:0 6px 6px 0;padding:.5rem .7rem;font-size:.77rem;color:#0A4030;font-style:italic;}
+.site-footer{background:var(--blue-dark);color:rgba(255,255,255,.6);text-align:center;padding:1.1rem 2rem;font-size:.73rem;margin-top:3rem;}
+.site-footer strong{color:rgba(255,255,255,.85);}
+/* DB cards */
+.db-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.85rem;margin:.85rem 0;}
+.db-card{background:#fff;border:var(--border);border-radius:var(--radius);padding:.9rem 1rem;box-shadow:var(--shadow);text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:.3rem;transition:box-shadow .2s,transform .2s;}
+.db-card:hover{box-shadow:var(--shadow-hover);transform:translateY(-2px);}
+.db-card .db-icon{font-size:1.4rem;}
+.db-card .db-name{font-size:.82rem;font-weight:700;color:var(--blue-dark);}
+.db-card .db-desc{font-size:.74rem;color:var(--gray-400);line-height:1.4;}
+/* diag Sí/No */
+.diag-q{background:#fff;border:var(--border);border-radius:var(--radius);padding:1rem 1.1rem;margin-bottom:.7rem;box-shadow:var(--shadow);}
+.diag-q-text{font-size:.85rem;font-weight:600;margin-bottom:.6rem;color:var(--gray-900);}
+.diag-btns{display:flex;gap:.5rem;flex-wrap:wrap;}
+.diag-btn{padding:.38rem .9rem;border-radius:20px;border:1.5px solid var(--gray-200);background:#fff;font-size:.78rem;font-weight:600;cursor:pointer;font-family:var(--font-body);transition:all .18s;}
+.diag-btn:hover{border-color:var(--blue-mid);background:var(--blue-light);}
+.diag-btn.yes{border-color:var(--teal);background:var(--teal-light);color:#0A4030;}
+.diag-btn.partial{border-color:var(--amber);background:var(--amber-light);color:#5C3A00;}
+.diag-btn.no{border-color:var(--red);background:var(--red-light);color:var(--red);}
+.diag-fb{display:none;margin-top:.55rem;padding:.5rem .8rem;border-radius:8px;font-size:.79rem;line-height:1.5;}
+.diag-fb.ok{background:var(--teal-light);color:#0A4030;border-left:3px solid var(--teal);}
+.diag-fb.warn{background:var(--amber-light);color:#5C3A00;border-left:3px solid var(--amber);}
+.diag-fb.alert{background:var(--red-light);color:var(--red);border-left:3px solid var(--red);}
+/* classify */
+.cls-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:.75rem;margin:.75rem 0;}
+.cls-item{background:#fff;border:1.5px solid var(--gray-200);border-radius:var(--radius);padding:.75rem .9rem;box-shadow:var(--shadow);}
+.cls-item .cls-label{font-size:.82rem;font-weight:600;margin-bottom:.55rem;color:var(--gray-900);}
+.cls-btns{display:flex;gap:.35rem;flex-wrap:wrap;}
+.cls-btn{padding:.3rem .7rem;border-radius:20px;border:1.5px solid var(--gray-200);background:#fff;font-size:.74rem;font-weight:600;cursor:pointer;font-family:var(--font-body);transition:all .15s;}
+.cls-btn:hover{border-color:var(--blue-mid);}
+.cls-item.correct{border-color:var(--teal);background:var(--teal-light);}
+.cls-item.wrong{border-color:var(--red);background:var(--red-light);}
+.cls-fb{font-size:.74rem;margin-top:.4rem;display:none;}
+.cls-score{margin-top:.9rem;font-size:.85rem;font-weight:600;color:var(--blue-dark);}
+/* source quiz */
+.sq-item{background:#fff;border:var(--border);border-radius:var(--radius);padding:.85rem 1rem;margin-bottom:.6rem;box-shadow:var(--shadow);}
+.sq-question{font-size:.84rem;font-weight:600;margin-bottom:.55rem;}
+.sq-btns{display:flex;gap:.5rem;}
+.sq-btn{padding:.35rem 1rem;border-radius:20px;border:1.5px solid var(--gray-200);background:#fff;font-size:.78rem;font-weight:600;cursor:pointer;font-family:var(--font-body);transition:all .18s;}
+.sq-btn:hover{border-color:var(--blue-mid);background:var(--blue-light);}
+.sq-fb{display:none;margin-top:.45rem;padding:.45rem .75rem;border-radius:8px;font-size:.78rem;line-height:1.5;}
+.sq-fb.correct{background:var(--teal-light);color:#0A4030;border-left:3px solid var(--teal);}
+.sq-fb.wrong{background:var(--red-light);color:var(--red);border-left:3px solid var(--red);}
+/* intruder + order */
+.intruder-opts{display:flex;flex-direction:column;gap:.5rem;margin:.75rem 0;}
+.intruder-opt{padding:.65rem 1rem;border-radius:8px;border:1.5px solid var(--gray-200);background:#fff;cursor:pointer;font-size:.82rem;transition:all .18s;}
+.intruder-opt:hover{border-color:var(--blue-mid);background:var(--blue-light);}
+.intruder-opt.correct{border-color:var(--teal);background:var(--teal-light);color:#0A4030;}
+.intruder-opt.wrong{border-color:var(--red);background:var(--red-light);color:var(--red);}
+.order-items{display:flex;flex-direction:column;gap:.5rem;margin:.75rem 0;}
+.order-row{display:flex;align-items:center;gap:.75rem;}
+.order-sel{padding:.38rem .65rem;border-radius:8px;border:1.5px solid var(--gray-200);font-family:var(--font-body);font-size:.8rem;background:#fff;cursor:pointer;color:var(--gray-900);}
+.order-label{font-size:.82rem;color:var(--gray-700);}
+.order-row.correct .order-label{color:#0A4030;font-weight:600;}
+.order-row.wrong .order-label{color:var(--red);font-weight:600;}
+/* paragraph components */
+.para-parts{display:flex;flex-direction:column;gap:.6rem;margin:.75rem 0;}
+.para-part-row{display:flex;align-items:flex-start;gap:.75rem;padding:.6rem .85rem;border-radius:8px;border:1.5px solid var(--gray-200);background:#fff;}
+.para-part-num{font-size:.75rem;font-weight:700;color:var(--blue);flex-shrink:0;margin-top:2px;}
+.para-part-text{font-size:.81rem;color:var(--gray-700);flex:1;line-height:1.5;}
+.para-part-sel{padding:.3rem .6rem;border-radius:8px;border:1.5px solid var(--gray-200);font-family:var(--font-body);font-size:.78rem;background:#fff;cursor:pointer;min-width:140px;}
+.para-part-row.correct{border-color:var(--teal);background:var(--teal-light);}
+.para-part-row.wrong{border-color:var(--red);background:var(--red-light);}
+/* error detect */
+.err-detect-para{background:var(--gray-50);border-radius:var(--radius);padding:1rem 1.1rem;font-size:.83rem;color:var(--gray-700);line-height:1.7;margin:.75rem 0;border:var(--border);}
+.err-checks{display:flex;flex-direction:column;gap:.45rem;margin:.6rem 0;}
+.err-check-row{display:flex;align-items:flex-start;gap:.6rem;padding:.5rem .75rem;border-radius:8px;border:1.5px solid var(--gray-200);background:#fff;cursor:pointer;}
+.err-check-row input{margin-top:2px;accent-color:var(--blue);}
+.err-check-row label{font-size:.8rem;color:var(--gray-700);cursor:pointer;}
+.err-check-row.correct-check{border-color:var(--teal);background:var(--teal-light);}
+.err-check-row.missed-check{border-color:var(--amber);background:var(--amber-light);}
+.err-check-row.false-check{border-color:var(--red);background:var(--red-light);}
+.err-detail{display:none;margin-top:.35rem;font-size:.76rem;font-style:italic;color:inherit;}
+.reset-btn{background:var(--gray-100);color:var(--gray-700);border:1.5px solid var(--gray-200);border-radius:8px;padding:.45rem 1rem;font-size:.78rem;font-weight:600;cursor:pointer;font-family:var(--font-body);transition:all .18s;margin-top:.5rem;}
+.reset-btn:hover{background:var(--gray-200);}
+@media(max-width:640px){.main{padding:1rem;}.hero{padding:1.5rem 1.2rem 1.2rem;}.hero h2{font-size:1.5rem;}.header-inner{padding:.7rem 1rem;}.header-badge{display:none;}}
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+  margin: 2rem 0;
+}
+
+.card {
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: #ffffff;
+}
+
+/* Efecto al pasar el mouse */
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+/* Colores personalizados por tarjeta */
+.card:nth-child(1) { border-top: 5px solid var(--blue); background-color: #f0f7ff; }
+.card:nth-child(2) { border-top: 5px solid var(--teal); background-color: #f0fff9; }
+.card:nth-child(3) { border-top: 5px solid var(--amber); background-color: #fffaf0; }
+
+/* El "Error Frecuente" con estilo de advertencia */
+.card:last-child {
+  grid-column: 2;
+  border: 1px solid var(--red);
+  background-color: #fff5f5;
+}
+
+/* Iconos más grandes y llamativos */
+.card-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.card h3 {
+  margin: 0 0 0.8rem 0;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.card p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #555;
+  margin: 0;
+}
+
+/* Responsive: 1 columna en móviles, 2 en tablets */
+@media (max-width: 900px) {
+  .card-grid { grid-template-columns: repeat(2, 1fr); }
+  .card:last-child { grid-column: auto; }
+}
+@media (max-width: 600px) {
+  .card-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <img src="data:image/png;base64,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pyzc8slt6j1hljWp3i36yUc83sM421rhE664etTXIsscEs706kc5Gt9RxOx1ebWLH40x7cb6m+lPI/k6VrudsLeDU06Nede1VOULXC7Z21pClLWlp53pK7EK6r3M6i1P+AACwIYAAAAAAAAB7GEcTXzCl2bdLDXy0dSibrlbxa9v5LmrwVOxTaLFtPXyCBsd5w3Q10iJoslPO6DXtVFRya+DQn8EK6w62unnWgm+3rRKt764t9FOWSKTm2pO4XkcFpv6cFdceGv/ANZn2Pc9cbYqpJqCOWC0UEqK18VGio97V50c9V149OmmploOFHBrGjLfQprPlzfedquKXdWO9lPR1dwABaFedZl/mHifArKxmHaqGBKxWLNykDZNdze0015vhKePiu/XLE9/qr5d5GSVtUrVlcxiNRdGo1OCc3BEPLBxjQpRqOqorfPW9p0dao4Km5PerZsAAOxzO4w/mrjOx4TdhehuEKWxWSR8nJA17ka/XeRHLxROK+k4cA5U6NOm24RSb18p0nVnNJSeeWo0HC2cWOsM2Kmstor6aKipkVI2upWOXiqquqqnHiqnF366Vl7vVZd7g9r6usmdNM5rUaiucuq6InMfSB5p21GnNzhFJvW8tZ9nXqVIqMpNpagADucjuL/mtjW+YS+9a43GOS28nHG5qQta9zWaK3VycV4tTXrOHAOVKhTopqnFJch0qVZ1XnN584O0wHmfi7BNrmtuH6unhp5plneklO16q9Wo3XVexqHFgVaNOtHe1IprlFOrOlLfQeTNW/CBzL+U6L5lH/QfhA5l/KdF8yj/AKGUgi+a7L4UepEjzhdfEfWz1MV3644mv9VfLs+OStqlasrmMRiKqNRqcE4JwRDscPZ0Y+sNjo7NbbhSx0dGzk4mupWOVG8eCqqceczoHepa0akFCcE0tSy1HGFxVhJzjJpvWz7d5uNVd7vV3Wtc19VVzPnmc1uiK9y6quic3FT+uHLzccPXulvNpqFp62lk34nomui9Sp0oqaoqdp54OrhFx3mWjVkc99JS32ek0+qz4zGqYpYai40UkMsaxyRuoo1a5qpoqKmnShwmGsQXfDd5ju9krZKKrj10fHzKi87VTmVOxTywcadnQpRcYQST16NZ1nc1qjUpSba1aTfLLtOYip6NIrrh6318zU05aOV0O92qmjk9GhzWYme+L8W26W1wMp7PQTN3ZWUquWSRq87XPVeZepETXpMoBGp4PZU5+UjTWf3s1HeeJ3U4byU3kD38DYvveC7u+62GeKGqfEsKukiR6bqqirwXwIeACfOnGpFxms0yHCcoSUovJo6/HuY+KscUdLSYhq4aiOleskW5A1ioqpouunOc5ZLlVWe70l1oXtZVUkzZoXObvIjmrqmqLz8T6YPNOhTpw8nCKUeLYep1Zzlv5PN8Zqv4QOZfynRfMo/6H+/hA5l/KdF8yj/oZSCL5rsvhR6kSPOF18R9bNHu+d+ZVypnQPv60zXpoq0sLInafpImqeZTO55ZZ5nzTSPkkequc97lVXKvOqqvOfAEijbUaCypRUeZZHCrXqVdNSTfODR6vOzH1TYZLG6vpGUMlMtKrI6RjVSNW7uiKicOHAzgH2rb0q2XlIp5asxTr1KWe8k1nxAAHY5HrYQxFdcKX6C92WdsNbAjkY5zEcmjkVFRUXn4KddiXOfHeIrFV2W61tHNR1TNyViUjGrprrwVE4LqhnYI9S0oVJqpOCclty0naFxVpxcIyaT2HSYBxtiDA9fUV2H6iKGaoi5KRZIkeit1ReZe1Dsvwgcy/lOi+ZR/0MpB4q2NtWlv6lNN8qPVO7r0o72E2lzmrfhA5l/KdF8yj/oc5i3NLHWKaR1Fdr9O6kf8OCFEiY/9JGomqdinGA+U8Ptact9Cmk+ZH2d7cTW9lNtc7AAJhGAAAPbwVim8YPvjbzY5o4axsbo0c+NHpuu5+Cnd/hA5l/KdF8yj/oZSCLWsrevLfVIJvlRIpXVekt7CbS5Gat+EDmX8p0XzKP8Aofznz+zMljVn3Xpo9ellHGi/UZaDl5rs/hR6ke+H3XxH1s9fE+J8QYnrEq7/AHaquEreDeWfq1idTW8zfMh5ABNhCMFvYrJEaUnJ5yebB2OAcy8V4Hoamiw9VwQw1MqSyJJA2RVciac69hxwPNWjTrR3lRZrlPtOrOlLfQeTNW/CBzL+U6L5lH/QfhA5l/KdF8yj/oZSCJ5rsvhR6kSfOF18R9bPXxhiO6Yrv898vMkclbOjUkfHGjEXdajU4Jw5kQ8gAmwhGEVGKySIspOTcpPNsHS4BxziHA9XVVWHqiGGWqjSOVZIWyatRdU5+Y5oHypThVi4TWaew+wnKnJSi8mat+EDmX8p0XzKP+g/CBzL+U6L5lH/AEMpBD812Xwo9SJPnC6+I+tmpz5+5kTwSQy3GicyRqtcnuJnFFTRegywAkULWjQz8lFRz4lkcatxVrZeUk3lxg1DA+eeOsMU0NE6qhu1FE1Gtirmq5zW9CI9FR3Do11MvAr21G4jvasU1ynyjXqUZb6nLJlCfhO12m+uDaFZ9NN/3W77Ov0nF43zzx1iemmom1UNpopUVroqFqsc5q86K9VV3Hp00MvBEpYPZUpb6NNZ9feSamJ3VSO9lN5dXcF4gAsiCazgLPvGmGaSKgq1gvVFE1GMbVqvKNROZEkTj6UU6S87TuIZ6V8drw5b6KZ3BJZZnTbvgTRvHwmBArKmD2VSe/lTWf3s1E+GJ3cI7xTeR6GIbzc8QXiou14q5KusqHb0kj19CInQidCIeeAWMYqKSSyRBbcnmwAD0fDu8FZs40wfY22Wx1tNDRtkdIjX0zXrvO5+Knt/hA5l/KdF8yj/AKGUghTw60qScpU02+REqN7cQSjGbSXKat+EDmX8p0XzKP8AoeNjLN3GuLbDLZL3W0s1FK5rnNZSsYurV1TRUTXnQ4ICGHWkJKUaaTXIhK9uJpxlNtPlNAwjnBjbCtgp7HZaujgoqfeVjVpGOVVc5XKqqqaquqnE3avqrrdKq5VsnKVNVK6aV2mmrnLqvDzn1Qd6dtSpyc4RSb1vjOU69ScVGUm0tQP6U08tNUxVED1jliej2OTna5F1RfSfzB11nI1VdoDMtU0W50ap4lH/AEMtmkdLM+VyNRz3K5UamicepD4A4ULWjQz8lBRz4lkdqtxVrZeUk3lxn2bXX1trr4a+3VU1JVQOR8U0T1a5q9aKhsOGtpDGtuibDdaS3XdiJpvvYsUq/tNXT+ExUHm5sre6WVaCf3xnqhdVrd/05NFAT7TNcv8Aa0+DLbHU6acq+oc76mov0nK3raAzHuKPbDXUduY7giUlMiK3wK5XL9JlII1PB7Gm81TXTp78zvPE7uayc30aO4+zdLhXXSulrrlWT1lVKu9JNNIr3uXtVT6wBZJJLJEFtt5s9vB2K7/hG5/dHD9xlo5lTdeiaKyROpzV4KnhNetO01iOKlbFdsPWyvenBZI3uh3vCndJ6DBgQ7nDra6edWCb49vWiTQvbi3WVOTSN4vG0xiSalWGz4ftlucvBHvc6ZWp2J3KelFMfxbia+4rui3K/XGatqFTdar17ljfyWtTg1OxDxwfbbD7a1edKCT7etive17hZVJNoHvYJxhiHBtzW4YfuD6WVybsjNN5kidTmrwU8EEmdONSLjNZpkeE5QkpReTKBoNqC9x0bWV2F7fUVCImskVQ+Nq/sqjvrOEzNzixZjqldbqp0NvtiuRVpaXVEk05t9yrq7jx04JzcDOQQaOE2dGflIU0mS6uJXVWG8nN5AAFiQgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//Z" alt="Universidad de Los Lagos" style="height:44px;width:auto;flex-shrink:0;">
+    <div class="header-text"><h1>Universidad de Los Lagos</h1><p>Departamento de Educación · Licenciatura en Educación</p></div>
+    <div class="header-badge">Investigación Educativa</div>
+  </div>
+  <nav class="nav-strip"><div class="nav-inner">
+    <a href="#queEs">¿Qué es?</a>
+    <a href="#relacion">Relación con la fundamentación</a>
+    <a href="#actividades">Actividades</a>
+    <a href="#errores">Errores comunes</a>
+    <a href="#quiz">Mini Quiz</a>
+    <a href="#checklist">Checklist</a>
+  </div></nav>
+</header>
+<main class="main">
+
+<div class="hero">
+  <p class="hero-eyebrow">Guía de Construcción</p>
+  <h2>Marco Teórico</h2>
+  <p>Una guía paso a paso para comprender, practicar y prepararte para la construcción del marco teórico de tu proyecto de investigación educativa.</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item"><strong>Asignatura</strong>Investigación Educativa</div>
+    <div class="hero-meta-item"><strong>Carreras Pedagógicas</strong>Licenciatura en Educación</div>
+    <div class="hero-meta-item"><strong>Semestre</strong>1-2026</div>
+  </div>
+</div>
+
+<div class="progress-wrap">
+  <div class="progress-label"><span>Progreso del checklist</span><span id="prog-txt">0 / 14 ítems completados</span></div>
+  <div class="progress-track"><div class="progress-fill" id="prog-fill"></div></div>
+</div>
+
+<section class="section" id="queEs">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <div><div class="section-title">¿Qué es el Marco Teórico y para qué sirve?</div><div class="section-sub">Definición · propósito · error frecuente</div></div>
+  </div>
+  <div class="card-grid" style="margin-bottom:1rem;">
+    <div class="card"><div class="card-icon ci-blue">📖</div><h3>¿Qué es?</h3><p>Es la base conceptual que sostiene tu investigación. Reúne, organiza y articula las teorías, conceptos y evidencias que permiten comprender el problema. <strong>No es un resumen de lecturas ni una lista de citas: es un argumento construido con fuentes.</strong></p></div>
+    <div class="card"><div class="card-icon ci-teal">🎯</div><h3>¿Para qué sirve?</h3><p>Le da sustento a tu pregunta y objetivos, permite interpretar los datos que recogerás y conecta tu investigación con el conocimiento ya existente.</p></div>
+    <div class="card"><div class="card-icon ci-amber">🧱</div><h3>¿Cómo se construye?</h3><p>En capítulos y subcapítulos ordenados de forma lógica y progresiva: de lo más general a lo más específico, siempre vinculados al problema de investigación.</p><span class="ref-tag">Hernández et al., 2014</span></div>
+    <div class="card"><div class="card-icon ci-red">⚠️</div><h3>Error frecuente</h3><p>Copiar párrafos de distintos autores sin relacionarlos ni vincularlos al problema. El marco teórico <strong>no es un collage</strong>: cada idea debe estar fundamentada y conectada.</p></div>
+  </div>
+  <div class="collapsible">
+    <button class="collapse-trigger" onclick="toggle(this)">
+      <div class="ct-icon ct-blue">📐</div>
+      <div><h3>Principios clave: Foco, Profundidad y Lógica</h3><p>Lo que distingue un buen marco teórico</p></div>
+      <div class="chevron">▼</div>
+    </button>
+    <div class="collapse-body">
+      <div class="card-grid">
+        <div class="info-box blue"><strong>🎯 Centrarse en el problema</strong><p>No divagar con temas no vinculados. Cada capítulo debe responder a la pregunta: ¿esto me ayuda a entender mi problema de investigación?</p></div>
+        <div class="info-box teal"><strong>🔬 Profundidad, no extensión</strong><p>Un buen marco teórico no es el que tiene más páginas, sino el que trata con profundidad los aspectos vinculados al tema. 3 capítulos bien desarrollados valen más que 6 superficiales.</p></div>
+        <div class="info-box amber"><strong>🔗 Lógica argumental</strong><p>Las ideas deben encadenarse, no saltar de un tema a otro sin conexión.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="relacion">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <div><div class="section-title">¿Cómo se relaciona con la fundamentación?</div><div class="section-sub">El marco teórico profundiza y amplía la fundamentación — no la repite</div></div>
+  </div>
+  <div class="info-box blue" style="margin-bottom:1rem;"><strong>Punto de partida obligatorio</strong><p>Antes de comenzar, retoma tu fundamentación. El marco teórico es la profundización sistemática de lo que allí esbozaste.</p></div>
+  <table class="compare-table">
+    <tr><th>En la fundamentación</th><th>En el marco teórico</th></tr>
+    <tr><td>Mencioné los conceptos clave del tema</td><td>Los defino con profundidad, desde múltiples fuentes y perspectivas</td></tr>
+    <tr><td>Describí investigaciones relevantes brevemente</td><td>Las organizo en capítulos y subcapítulos articulados con lógica argumental</td></tr>
+    <tr><td>Identifiqué el vacío o tensión del campo</td><td>Profundizo en ese vacío usando literatura especializada actualizada</td></tr>
+    <tr><td>Cité normativa chilena e internacional (máx. 3)</td><td>Puedo incluirla como subcapítulo si es pertinente al problema</td></tr>
+    <tr><td>Usé 5+ referencias con 80% de los últimos 5 años</td><td>Amplío el volumen de fuentes y mantengo el criterio de actualidad</td></tr>
+  </table>
+</section>
+
+<section class="section" id="actividades">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <div><div class="section-title">Actividades de comprensión y práctica</div><div class="section-sub">Ejercicios interactivos para prepararte antes del taller presencial</div></div>
+  </div>
+
+  <div class="activity">
+    <div class="activity-header"><div class="activity-num">1</div><div><div class="activity-title">Auto-diagnóstico: ¿Estás listo para comenzar?</div><div class="activity-desc">Revisa mentalmente tu fundamentación antes de avanzar al marco teórico</div></div></div>
+    <div class="activity-body">
+      <p style="font-size:.83rem;margin-bottom:1rem;color:var(--gray-700)">Responde con honestidad. Si tienes dudas o respondiste "No", te conviene revisar tu fundamentación antes del taller.</p>
+      <div id="diag-container">
+        <div class="diag-q" id="dq0">
+          <div class="diag-q-text">1. ¿Identificaste claramente el fenómeno o problema que quieres investigar en tu fundamentación?</div>
+          <div class="diag-btns">
+            <button class="diag-btn" onclick="diagAnswer(0,'yes')">✅ Sí, está claro</button>
+            <button class="diag-btn" onclick="diagAnswer(0,'partial')">🤔 No estoy seguro</button>
+            <button class="diag-btn" onclick="diagAnswer(0,'no')">❌ No del todo</button>
+          </div>
+          <div class="diag-fb ok" id="dfb0-yes">✅ ¡Perfecto! Tener el problema claro es el punto de partida del marco teórico.</div>
+          <div class="diag-fb warn" id="dfb0-partial">🤔 Si no tienes el problema del todo claro, el marco teórico no tendrá un norte. Te sugerimos revisitar la sección 1.1 de tu fundamentación.</div>
+          <div class="diag-fb alert" id="dfb0-no">⚠️ Es importante definir el problema antes de avanzar. Vuelve a tu fundamentación y revisa la pregunta de investigación y los objetivos.</div>
+        </div>
+        <div class="diag-q" id="dq1">
+          <div class="diag-q-text">2. ¿Puedes nombrar al menos 2 conceptos clave que aparecieron en tu fundamentación?</div>
+          <div class="diag-btns">
+            <button class="diag-btn" onclick="diagAnswer(1,'yes')">✅ Sí, los tengo claros</button>
+            <button class="diag-btn" onclick="diagAnswer(1,'partial')">🤔 Vagamente</button>
+            <button class="diag-btn" onclick="diagAnswer(1,'no')">❌ No los recuerdo bien</button>
+          </div>
+          <div class="diag-fb ok" id="dfb1-yes">✅ Excelente. Esos conceptos serán la base de los capítulos de tu marco teórico.</div>
+          <div class="diag-fb warn" id="dfb1-partial">🤔 Intenta listarlos. Esos conceptos determinarán la estructura de tu marco teórico.</div>
+          <div class="diag-fb alert" id="dfb1-no">⚠️ Vuelve a leer la sección A (Perspectiva Conceptual) de tu fundamentación. Allí están los conceptos que deberás desarrollar en profundidad.</div>
+        </div>
+        <div class="diag-q" id="dq2">
+          <div class="diag-q-text">3. ¿Identificaste el vacío o tensión de investigación al final de la fundamentación?</div>
+          <div class="diag-btns">
+            <button class="diag-btn" onclick="diagAnswer(2,'yes')">✅ Sí, lo tengo definido</button>
+            <button class="diag-btn" onclick="diagAnswer(2,'partial')">🤔 Más o menos</button>
+            <button class="diag-btn" onclick="diagAnswer(2,'no')">❌ No lo explicitamos</button>
+          </div>
+          <div class="diag-fb ok" id="dfb2-yes">✅ Perfecto. El vacío detectado orientará el cierre de tu marco teórico, especialmente el último subcapítulo.</div>
+          <div class="diag-fb warn" id="dfb2-partial">🤔 El vacío es crucial: es lo que justifica tu investigación. Revisa la sección D (Cierre) de tu fundamentación.</div>
+          <div class="diag-fb alert" id="dfb2-no">⚠️ Sin un vacío claro, el marco teórico pierde su razón de ser. Antes de empezar, define: ¿qué no se sabe aún sobre tu tema? ¿Qué falta investigar?</div>
+        </div>
+        <div class="diag-q" id="dq3">
+          <div class="diag-q-text">4. ¿Consultaste investigaciones empíricas (nacionales e internacionales) en tu fundamentación?</div>
+          <div class="diag-btns">
+            <button class="diag-btn" onclick="diagAnswer(3,'yes')">✅ Sí, tengo varias</button>
+            <button class="diag-btn" onclick="diagAnswer(3,'partial')">🤔 Solo algunas</button>
+            <button class="diag-btn" onclick="diagAnswer(3,'no')">❌ Casi no hay</button>
+          </div>
+          <div class="diag-fb ok" id="dfb3-yes">✅ Esas fuentes son la base del Estado del Arte de tu marco teórico. Estas se organizarán en subcapítulos.</div>
+          <div class="diag-fb warn" id="dfb3-partial">🤔 El marco teórico necesita más fuentes. Antes de empezar, busca al menos 3 revistas científicas del área. Mira la Actividad 3 de esta guía.</div>
+          <div class="diag-fb alert" id="dfb3-no">⚠️ El marco teórico requiere sustento empírico sólido. Antes de comenzar, debes buscar investigaciones en bases de datos académicas. Revisa la Actividad 3.</div>
+        </div>
+      </div>
+      <button class="reset-btn" onclick="resetDiag()">↺ Reiniciar diagnóstico</button>
+    </div>
+  </div>
+
+  <div class="activity">
+    <div class="activity-header"><div class="activity-num">2</div><div><div class="activity-title">Jerarquización de conceptos</div><div class="activity-desc">Practica cómo clasificar conceptos por nivel de amplitud</div></div></div>
+    <div class="activity-body">
+      <p style="font-size:.83rem;margin-bottom:.75rem;color:var(--gray-700)"><strong>Instrucción:</strong> Para cada concepto del tema modelo <em>"Motivación estudiantil en Educación Física"</em>, indica si es <strong>Amplio</strong>, <strong>Intermedio</strong> o <strong>Específico</strong>. Recibirás retroalimentación inmediata.</p>
+      <div class="cls-grid" id="cls-grid">
+        <div class="cls-item" id="ci0"><div class="cls-label">Motivación estudiantil</div><div class="cls-btns"><button class="cls-btn" onclick="classify(0,'A','A')">Amplio</button><button class="cls-btn" onclick="classify(0,'I','A')">Intermedio</button><button class="cls-btn" onclick="classify(0,'E','A')">Específico</button></div><div class="cls-fb" id="cf0"></div></div>
+        <div class="cls-item" id="ci1"><div class="cls-label">Educación Física</div><div class="cls-btns"><button class="cls-btn" onclick="classify(1,'A','A')">Amplio</button><button class="cls-btn" onclick="classify(1,'I','A')">Intermedio</button><button class="cls-btn" onclick="classify(1,'E','A')">Específico</button></div><div class="cls-fb" id="cf1"></div></div>
+        <div class="cls-item" id="ci2"><div class="cls-label">Aprendizaje escolar</div><div class="cls-btns"><button class="cls-btn" onclick="classify(2,'A','A')">Amplio</button><button class="cls-btn" onclick="classify(2,'I','A')">Intermedio</button><button class="cls-btn" onclick="classify(2,'E','A')">Específico</button></div><div class="cls-fb" id="cf2"></div></div>
+        <div class="cls-item" id="ci3"><div class="cls-label">Motivación intrínseca</div><div class="cls-btns"><button class="cls-btn" onclick="classify(3,'A','I')">Amplio</button><button class="cls-btn" onclick="classify(3,'I','I')">Intermedio</button><button class="cls-btn" onclick="classify(3,'E','I')">Específico</button></div><div class="cls-fb" id="cf3"></div></div>
+        <div class="cls-item" id="ci4"><div class="cls-label">Clima de aula</div><div class="cls-btns"><button class="cls-btn" onclick="classify(4,'A','I')">Amplio</button><button class="cls-btn" onclick="classify(4,'I','I')">Intermedio</button><button class="cls-btn" onclick="classify(4,'E','I')">Específico</button></div><div class="cls-fb" id="cf4"></div></div>
+        <div class="cls-item" id="ci5"><div class="cls-label">Estrategias didácticas</div><div class="cls-btns"><button class="cls-btn" onclick="classify(5,'A','I')">Amplio</button><button class="cls-btn" onclick="classify(5,'I','I')">Intermedio</button><button class="cls-btn" onclick="classify(5,'E','I')">Específico</button></div><div class="cls-fb" id="cf5"></div></div>
+        <div class="cls-item" id="ci6"><div class="cls-label">Participación en clases de EF</div><div class="cls-btns"><button class="cls-btn" onclick="classify(6,'A','E')">Amplio</button><button class="cls-btn" onclick="classify(6,'I','E')">Intermedio</button><button class="cls-btn" onclick="classify(6,'E','E')">Específico</button></div><div class="cls-fb" id="cf6"></div></div>
+        <div class="cls-item" id="ci7"><div class="cls-label">Liceos municipales de Osorno</div><div class="cls-btns"><button class="cls-btn" onclick="classify(7,'A','E')">Amplio</button><button class="cls-btn" onclick="classify(7,'I','E')">Intermedio</button><button class="cls-btn" onclick="classify(7,'E','E')">Específico</button></div><div class="cls-fb" id="cf7"></div></div>
+        <div class="cls-item" id="ci8"><div class="cls-label">Estudiantes de 8° básico</div><div class="cls-btns"><button class="cls-btn" onclick="classify(8,'A','E')">Amplio</button><button class="cls-btn" onclick="classify(8,'I','E')">Intermedio</button><button class="cls-btn" onclick="classify(8,'E','E')">Específico</button></div><div class="cls-fb" id="cf8"></div></div>
+      </div>
+      <div class="cls-score" id="cls-score" style="display:none;"></div>
+      <button class="reset-btn" onclick="resetClassify()">↺ Reiniciar clasificación</button>
+    </div>
+  </div>
+
+  <div class="activity">
+    <div class="activity-header"><div class="activity-num">3</div><div><div class="activity-title">Búsqueda de fuentes académicas</div><div class="activity-desc">Conoce dónde buscar y practica evaluar la confiabilidad de las fuentes</div></div></div>
+    <div class="activity-body">
+      <div class="info-box teal" style="margin-bottom:.85rem;"><strong>¿Dónde buscar? Accede directamente a las bases de datos</strong><p>Haz clic en cualquier tarjeta para abrir la base de datos en una nueva pestaña. Recuerda: el 80% de tus fuentes debe tener antigüedad máxima de 5 años.</p></div>
+      <div class="db-grid">
+        <a href="https://scholar.google.com" target="_blank" class="db-card"><div class="db-icon">🔍</div><div class="db-name">Google Scholar</div><div class="db-desc">Artículos, tesis y libros académicos de acceso libre</div></a>
+        <a href="https://www.scielo.cl" target="_blank" class="db-card"><div class="db-icon">🇨🇱</div><div class="db-name">Scielo Chile</div><div class="db-desc">Revistas científicas latinoamericanas de libre acceso</div></a>
+        <a href="https://www.scopus.com" target="_blank" class="db-card"><div class="db-icon">🌐</div><div class="db-name">Scopus</div><div class="db-desc">Base de datos internacional de artículos indexados</div></a>
+        <a href="https://dialnet.unirioja.es" target="_blank" class="db-card"><div class="db-icon">📚</div><div class="db-name">Dialnet</div><div class="db-desc">Revistas hispanas en ciencias sociales y educación</div></a>
+        <a href="https://www.redalyc.org" target="_blank" class="db-card"><div class="db-icon">🌎</div><div class="db-name">Redalyc</div><div class="db-desc">Red de revistas científicas de América Latina y el Caribe</div></a>
+        <a href="https://eric.ed.gov" target="_blank" class="db-card"><div class="db-icon">🎓</div><div class="db-name">ERIC</div><div class="db-desc">Base de datos especializada en educación (inglés)</div></a>
+        <a href="http://pensamientoeducativo.uc.cl" target="_blank" class="db-card"><div class="db-icon">📰</div><div class="db-name">Pensamiento Educativo (PUC)</div><div class="db-desc">Revista chilena de investigación educacional</div></a>
+        <a href="https://revistas.uach.cl/estudios-pedagogicos" target="_blank" class="db-card"><div class="db-icon">📰</div><div class="db-name">Estudios Pedagógicos (UACh)</div><div class="db-desc">Revista de educación de la Universidad Austral de Chile</div></a>
+        <a href="https://www.calidadenlaeducacion.cl" target="_blank" class="db-card"><div class="db-icon">📰</div><div class="db-name">Calidad en la Educación (CNED)</div><div class="db-desc">Revista del Consejo Nacional de Educación de Chile</div></a>
+        <a href="https://recyt.fecyt.es" target="_blank" class="db-card"><div class="db-icon">📰</div><div class="db-name">Revista RECYT</div><div class="db-desc">Repositorio español de ciencia y tecnología</div></a>
+        <a href="http://repositorio.ulagos.cl" target="_blank" class="db-card"><div class="db-icon">🏫</div><div class="db-name">Repositorio ULagos</div><div class="db-desc">Tesis y trabajos de investigación de la Universidad de Los Lagos</div></a>
+      </div>
+      <p style="font-size:.83rem;font-weight:600;color:var(--blue-dark);margin:.9rem 0 .5rem;">Mini quiz — ¿Es esta fuente confiable para el marco teórico?</p>
+      <div id="sq-container">
+        <div class="sq-item"><div class="sq-question">📌 Un artículo publicado en la revista <em>Scielo</em> con revisión por pares, de 2022.</div><div class="sq-btns"><button class="sq-btn" onclick="sqAnswer(this,'yes',true,0)">✅ Sí, es confiable</button><button class="sq-btn" onclick="sqAnswer(this,'no',true,0)">❌ No es confiable</button></div><div class="sq-fb correct" id="sqfb0">✅ Correcto. Scielo publica artículos con revisión por pares, es una fuente académica válida y reconocida en Latinoamérica.</div><div class="sq-fb wrong" id="sqfb0w" style="display:none">❌ Incorrecto. Scielo es una base de datos académica con revisión por pares, válida para el marco teórico.</div></div>
+        <div class="sq-item"><div class="sq-question">📌 La entrada de Wikipedia sobre "motivación estudiantil".</div><div class="sq-btns"><button class="sq-btn" onclick="sqAnswer(this,'yes',false,1)">✅ Sí, es confiable</button><button class="sq-btn" onclick="sqAnswer(this,'no',false,1)">❌ No es confiable</button></div><div class="sq-fb correct" id="sqfb1" style="display:none">✅ Correcto. Wikipedia no tiene revisión por pares ni autoría académica verificable. No debe usarse como fuente en el marco teórico.</div><div class="sq-fb wrong" id="sqfb1w" style="display:none">❌ Incorrecto. Wikipedia no es fuente académica válida porque puede ser editada por cualquier persona y no tiene revisión por pares.</div></div>
+        <div class="sq-item"><div class="sq-question">📌 Un blog de un profesor universitario que reflexiona sobre motivación en clases.</div><div class="sq-btns"><button class="sq-btn" onclick="sqAnswer(this,'yes',false,2)">✅ Sí, es confiable</button><button class="sq-btn" onclick="sqAnswer(this,'no',false,2)">❌ No es confiable</button></div><div class="sq-fb correct" id="sqfb2" style="display:none">✅ Correcto. Un blog, aunque sea de un académico, no pasa por revisión por pares ni tiene validación científica formal. No es fuente válida para el marco teórico.</div><div class="sq-fb wrong" id="sqfb2w" style="display:none">❌ Incorrecto. Los blogs, incluso de académicos, no son fuentes válidas para el marco teórico porque no tienen revisión por pares ni validación científica.</div></div>
+        <div class="sq-item"><div class="sq-question">📌 Una tesis de Magíster en Educación de la Universidad de Chile, 2021.</div><div class="sq-btns"><button class="sq-btn" onclick="sqAnswer(this,'yes',true,3)">✅ Sí, es confiable</button><button class="sq-btn" onclick="sqAnswer(this,'no',true,3)">❌ No es confiable</button></div><div class="sq-fb correct" id="sqfb3" style="display:none">✅ Correcto. Las tesis de posgrado de universidades acreditadas son fuentes académicas válidas y frecuentemente citadas en marcos teóricos.</div><div class="sq-fb wrong" id="sqfb3w" style="display:none">❌ Incorrecto. Las tesis de posgrado de universidades acreditadas son fuentes académicas válidas. Puedes citarlas en tu marco teórico.</div></div>
+        <div class="sq-item"><div class="sq-question">📌 Una noticia del diario <em>La Tercera</em> sobre resultados del SIMCE 2023.</div><div class="sq-btns"><button class="sq-btn" onclick="sqAnswer(this,'yes',false,4)">✅ Sí, es confiable</button><button class="sq-btn" onclick="sqAnswer(this,'no',false,4)">❌ No es confiable</button></div><div class="sq-fb correct" id="sqfb4" style="display:none">✅ Correcto. Las noticias de prensa no son fuentes académicas. Puedes citar los <em>informes oficiales</em> del SIMCE directamente desde la Agencia de Calidad de la Educación, pero no la noticia periodística.</div><div class="sq-fb wrong" id="sqfb4w" style="display:none">❌ Incorrecto. Las noticias de prensa no son fuentes académicas para el marco teórico. Accede al informe oficial directamente desde la Agencia de Calidad de la Educación.</div></div>
+      </div>
+      <button class="reset-btn" onclick="resetSQ()">↺ Reiniciar quiz de fuentes</button>
+    </div>
+  </div>
+
+  <div class="activity">
+    <div class="activity-header"><div class="activity-num">4</div><div><div class="activity-title">Diseño de la estructura del marco teórico</div><div class="activity-desc">Reconoce una buena estructura y practica el orden lógico de capítulos</div></div></div>
+    <div class="activity-body">
+      <div class="collapsible">
+        <button class="collapse-trigger" onclick="toggle(this)">
+          <div class="ct-icon ct-teal">📋</div>
+          <div><h3>Ver ejemplo modelo completo</h3><p>Tema: Percepción de estudiantes sobre infraestructura y motivación</p></div>
+          <div class="chevron">▼</div>
+        </button>
+        <div class="collapse-body">
+          <table class="nice-table">
+            <tr><th style="width:20%">Capítulo</th><th style="width:45%">Título y subcapítulos</th><th>Descripción</th></tr>
+            <tr><td><strong>Cap. 1</strong></td><td>Infraestructura escolar<br><span style="color:var(--gray-400);font-size:.75rem;">→ 1.1 Concepto e infraestructura<br>→ 1.2 Factores de la infraestructura</span></td><td>Define el concepto y factores clave</td></tr>
+            <tr><td><strong>Cap. 2</strong></td><td>Perspectiva nacional e internacional<br><span style="color:var(--gray-400);font-size:.75rem;">→ 2.1 Perspectiva nacional<br>→ 2.2 Perspectiva internacional</span></td><td>Contextualiza desde políticas y evidencia comparada</td></tr>
+            <tr><td><strong>Cap. 3</strong></td><td>Motivación estudiantil<br><span style="color:var(--gray-400);font-size:.75rem;">→ 3.1 Definición<br>→ 3.2 Factores<br>→ 3.3 Infraestructura y motivación</span></td><td>Desarrolla el segundo concepto y cierra vinculando ambos temas</td></tr>
+          </table>
+        </div>
+      </div>
+      <p style="font-size:.85rem;font-weight:600;color:var(--blue-dark);margin:1rem 0 .5rem;">Ejercicio A — Detecta el capítulo intruso</p>
+      <p style="font-size:.82rem;color:var(--gray-700);margin-bottom:.75rem;">El tema de investigación es: <strong>"Motivación en clases de Educación Física en enseñanza media"</strong>. Uno de los siguientes capítulos <strong>NO pertenece</strong> a este marco teórico. ¿Cuál es?</p>
+      <div class="intruder-opts" id="intruder-opts">
+        <div class="intruder-opt" onclick="intruder(this,false)">Capítulo 1: Motivación estudiantil y sus dimensiones</div>
+        <div class="intruder-opt" onclick="intruder(this,false)">Capítulo 2: Educación Física y aprendizaje en la enseñanza media</div>
+        <div class="intruder-opt" onclick="intruder(this,true)">Capítulo 3: Historia de los Juegos Olímpicos modernos</div>
+        <div class="intruder-opt" onclick="intruder(this,false)">Capítulo 4: Factores que inciden en la motivación en contextos de EF en Chile</div>
+      </div>
+      <div class="quiz-feedback correct" id="intruder-ok">✅ ¡Correcto! La historia de los Juegos Olímpicos no se vincula al problema de investigación (motivación en EF escolar). Un capítulo que no responde directamente al problema no pertenece al marco teórico.</div>
+      <div class="quiz-feedback wrong" id="intruder-fail">❌ No es ese. El capítulo intruso es el de la "Historia de los Juegos Olímpicos", que nada tiene que ver con motivación en el aula de EF escolar.</div>
+      <button class="reset-btn" onclick="resetIntruder()">↺ Reiniciar</button>
+
+      <p style="font-size:.85rem;font-weight:600;color:var(--blue-dark);margin:1.25rem 0 .5rem;">Ejercicio B — Ordena los capítulos de mayor a menor especificidad</p>
+      <p style="font-size:.82rem;color:var(--gray-700);margin-bottom:.75rem;">Asigna el orden correcto (1°, 2°, 3°) a estos tres capítulos para el tema: <strong>"Bienestar emocional y rendimiento en estudiantes de básica"</strong>.</p>
+      <div class="order-items" id="order-items">
+        <div class="order-row" id="or0"><select class="order-sel" id="os0"><option value="">—</option><option value="1">1°</option><option value="2">2°</option><option value="3">3°</option></select><span class="order-label">Factores del bienestar emocional que inciden en el rendimiento escolar</span></div>
+        <div class="order-row" id="or1"><select class="order-sel" id="os1"><option value="">—</option><option value="1">1°</option><option value="2">2°</option><option value="3">3°</option></select><span class="order-label">Bienestar emocional en la infancia: definición y modelos teóricos</span></div>
+        <div class="order-row" id="or2"><select class="order-sel" id="os2"><option value="">—</option><option value="1">1°</option><option value="2">2°</option><option value="3">3°</option></select><span class="order-label">Relación entre bienestar emocional y rendimiento escolar: evidencia empírica</span></div>
+      </div>
+      <div class="quiz-feedback correct" id="order-ok">✅ ¡Correcto! El orden lógico va de lo general (definición teórica) → a lo relacional (evidencia empírica) → a lo específico (contexto particular). Así se construye la lógica argumental del marco teórico.</div>
+      <div class="quiz-feedback wrong" id="order-fail">❌ No es ese orden. La secuencia correcta es: 1° Bienestar emocional (definición y modelos) → 2° Relación con rendimiento (evidencia) → 3° Factores específicos en el contexto. Del concepto más amplio al más específico.</div>
+      <div class="quiz-actions"><button class="btn-quiz" onclick="verifyOrder()">Verificar orden</button><button class="reset-btn" onclick="resetOrder()">↺ Reiniciar</button></div>
+    </div>
+  </div>
+
+  <div class="activity">
+    <div class="activity-header"><div class="activity-num">5</div><div><div class="activity-title">Redacción académica</div><div class="activity-desc">Reconoce los componentes de un párrafo académico y detecta errores</div></div></div>
+    <div class="activity-body">
+      <div class="info-box amber" style="margin-bottom:.85rem;">
+        <strong>Modelo de párrafo académico (4 componentes)</strong>
+        <ol style="padding-left:1.1rem;font-size:.82rem;color:var(--gray-700);">
+          <li style="margin-bottom:.2rem;"><strong>① Frase inicial:</strong> presenta el concepto o idea central del subcapítulo.</li>
+          <li style="margin-bottom:.2rem;"><strong>② Desarrollo:</strong> explica con precisión qué significa y qué implica.</li>
+          <li style="margin-bottom:.2rem;"><strong>③ Cita de apoyo:</strong> incorpora la voz de un autor para respaldar la idea.</li>
+          <li><strong>④ Conexión:</strong> cierra vinculando la idea con el problema de investigación.</li>
+        </ol>
+      </div>
+      <div class="info-box teal" style="margin-bottom:.85rem;">
+        <strong>Ejemplo de párrafo bien construido</strong>
+        <p><em>"La motivación estudiantil constituye un factor determinante en el rendimiento académico y en la disposición al aprendizaje. Desde una perspectiva cognitiva, se entiende como un estado interno que activa, dirige y mantiene el comportamiento del estudiante hacia metas académicas (Pintrich &amp; Schunk, 2006). En el contexto chileno, su estudio cobra especial relevancia dado que investigaciones recientes señalan que los niveles de motivación intrínseca disminuyen progresivamente en la enseñanza media (Valenzuela et al., 2015), lo cual se relaciona directamente con el problema que esta investigación pretende abordar."</em></p>
+      </div>
+      <p style="font-size:.85rem;font-weight:600;color:var(--blue-dark);margin:0 0 .5rem;">Ejercicio A — Identifica los componentes del párrafo</p>
+      <p style="font-size:.82rem;color:var(--gray-700);margin-bottom:.75rem;">Para cada oración numerada del párrafo modelo, selecciona qué componente es:</p>
+      <div class="para-parts" id="para-parts">
+        <div class="para-part-row" id="pr0">
+          <span class="para-part-num">①</span>
+          <span class="para-part-text">"La motivación estudiantil constituye un factor determinante en el rendimiento académico y en la disposición al aprendizaje."</span>
+          <select class="para-part-sel" id="psel0" onchange="checkPara(0,this.value,'1')"><option value="">— Selecciona —</option><option value="1">① Frase inicial</option><option value="2">② Desarrollo</option><option value="3">③ Cita</option><option value="4">④ Conexión</option></select>
+        </div>
+        <div class="para-part-row" id="pr1">
+          <span class="para-part-num">②</span>
+          <span class="para-part-text">"Desde una perspectiva cognitiva, se entiende como un estado interno que activa, dirige y mantiene el comportamiento del estudiante hacia metas académicas (Pintrich &amp; Schunk, 2006)."</span>
+          <select class="para-part-sel" id="psel1" onchange="checkPara(1,this.value,'3')"><option value="">— Selecciona —</option><option value="1">① Frase inicial</option><option value="2">② Desarrollo</option><option value="3">③ Cita</option><option value="4">④ Conexión</option></select>
+        </div>
+        <div class="para-part-row" id="pr2">
+          <span class="para-part-num">③</span>
+          <span class="para-part-text">"En el contexto chileno, su estudio cobra especial relevancia dado que investigaciones recientes señalan que los niveles de motivación intrínseca disminuyen progresivamente en la enseñanza media (Valenzuela et al., 2015)…"</span>
+          <select class="para-part-sel" id="psel2" onchange="checkPara(2,this.value,'2')"><option value="">— Selecciona —</option><option value="1">① Frase inicial</option><option value="2">② Desarrollo</option><option value="3">③ Cita</option><option value="4">④ Conexión</option></select>
+        </div>
+        <div class="para-part-row" id="pr3">
+          <span class="para-part-num">④</span>
+          <span class="para-part-text">"…lo cual se relaciona directamente con el problema que esta investigación pretende abordar."</span>
+          <select class="para-part-sel" id="psel3" onchange="checkPara(3,this.value,'4')"><option value="">— Selecciona —</option><option value="1">① Frase inicial</option><option value="2">② Desarrollo</option><option value="3">③ Cita</option><option value="4">④ Conexión</option></select>
+        </div>
+      </div>
+      <button class="reset-btn" onclick="resetPara()">↺ Reiniciar ejercicio A</button>
+
+      <p style="font-size:.85rem;font-weight:600;color:var(--blue-dark);margin:1.25rem 0 .5rem;">Ejercicio B — Detecta los errores del párrafo</p>
+      <p style="font-size:.82rem;color:var(--gray-700);margin-bottom:.6rem;">Lee el siguiente párrafo y marca los errores que detectas (puede haber más de uno):</p>
+      <div class="err-detect-para">Yo creo que la convivencia escolar es muy importante para el aprendizaje. Hay muchos autores que dicen que afecta el rendimiento de los estudiantes. Además, esto es relevante porque en las escuelas pasa mucho y los profes deben manejarlo bien.</div>
+      <div class="err-checks" id="err-checks">
+        <div class="err-check-row" id="ec0" onclick="toggleErr(0)"><input type="checkbox" id="ech0"><label for="ech0">Usa primera persona ("Yo creo que…")</label><div class="err-detail" id="ed0">✅ Error real: el texto académico debe redactarse en tercera persona. Ej: "La convivencia escolar constituye un factor determinante…"</div></div>
+        <div class="err-check-row" id="ec1" onclick="toggleErr(1)"><input type="checkbox" id="ech1"><label for="ech1">Cita un autor sin indicar nombre ni año</label><div class="err-detail" id="ed1">✅ Error real: "Hay muchos autores que dicen…" no es una cita válida. Debe indicar: Apellido (año) o (Apellido, año).</div></div>
+        <div class="err-check-row" id="ec2" onclick="toggleErr(2)"><input type="checkbox" id="ech2"><label for="ech2">No conecta la idea con el problema de investigación</label><div class="err-detail" id="ed2">✅ Error real: el párrafo no menciona cómo esto se relaciona con el problema o pregunta de investigación específica. Falta la oración de conexión (componente ④).</div></div>
+        <div class="err-check-row" id="ec3" onclick="toggleErr(3)"><input type="checkbox" id="ech3"><label for="ech3">Usa lenguaje coloquial ("los profes", "pasa mucho")</label><div class="err-detail" id="ed3">✅ Error real: el lenguaje académico debe ser formal y preciso. "Los profes" debe ser "los docentes"; "pasa mucho" debe especificar qué fenómenos ocurren.</div></div>
+        <div class="err-check-row" id="ec4" onclick="toggleErr(4)"><input type="checkbox" id="ech4"><label for="ech4">El párrafo tiene demasiadas citas largas</label><div class="err-detail" id="ed4">Este NO es un error en este párrafo. Al contrario: el problema es que no hay ninguna cita válida.</div></div>
+      </div>
+      <div class="quiz-actions"><button class="btn-quiz" onclick="verifyErrors()">Verificar detección</button><button class="reset-btn" onclick="resetErrors()">↺ Reiniciar</button></div>
+      <div class="quiz-feedback" id="err-global-fb" style="margin-top:.75rem;"></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="errores">
+  <div class="section-header">
+    <div class="section-num">⚠</div>
+    <div><div class="section-title">Errores comunes al construir el marco teórico</div><div class="section-sub">Aprende a identificarlos y corregirlos</div></div>
+  </div>
+  <div class="error-cards">
+    <div class="error-card"><div class="error-header"><span>Error 1 — El "collage" de citas</span></div><div class="error-body"><p>Acumular citas sin analizarlas ni relacionarlas. El lector no entiende la postura del investigador.</p><div class="wrong-ex">✗ "Según García (2020)… Por otro lado, López (2019)… Además, Martínez (2021)…" (sin conexión)</div><div class="right-ex">✓ Parafrasear, contrastar autores y cerrar con una conclusión propia.</div></div></div>
+    <div class="error-card"><div class="error-header"><span>Error 2 — Capítulos sin conexión</span></div><div class="error-body"><p>Tratar cada capítulo como tema independiente, sin mostrar cómo se relacionan.</p><div class="wrong-ex">✗ Capítulo 1: motivación / Capítulo 2: legislación / Capítulo 3: tecnología (sin vínculo)</div><div class="right-ex">✓ Cada capítulo es un eslabón que avanza hacia la comprensión del problema.</div></div></div>
+    <div class="error-card"><div class="error-header"><span>Error 3 — Fuentes de baja calidad</span></div><div class="error-body"><p>Usar Wikipedia, blogs o noticias como fuentes principales.</p><div class="wrong-ex">✗ "Según Wikipedia, la motivación es…"</div><div class="right-ex">✓ Usar artículos indexados, tesis y libros académicos especializados.</div></div></div>
+    <div class="error-card"><div class="error-header"><span>Error 4 — Repetir la fundamentación</span></div><div class="error-body"><p>Copiar lo escrito en la fundamentación sin profundizar ni ampliar.</p><div class="wrong-ex">✗ Reescribir los mismos párrafos con mínimas modificaciones.</div><div class="right-ex">✓ Partir de los conceptos de la fundamentación y desarrollarlos con mayor rigor y más fuentes.</div></div></div>
+    <div class="error-card"><div class="error-header"><span>Error 5 — Títulos genéricos</span></div><div class="error-body"><p>Usar títulos vagos que no dicen nada sobre el contenido.</p><div class="wrong-ex">✗ "Capítulo 1: Antecedentes" / "Capítulo 2: Marco conceptual"</div><div class="right-ex">✓ "Capítulo 1: Motivación estudiantil en la enseñanza media" — el título debe anticipar el contenido.</div></div></div>
+    <div class="error-card"><div class="error-header"><span>Error 6 — Primera persona</span></div><div class="error-body"><p>El lenguaje académico evita "yo", "nosotros", "creo que".</p><div class="wrong-ex">✗ "Yo creo que la motivación es importante porque en mi experiencia…"</div><div class="right-ex">✓ "La motivación constituye un factor determinante en el proceso de aprendizaje (Autor, año)."</div></div></div>
+  </div>
+</section>
+
+<section class="section" id="quiz">
+  <div class="section-header">
+    <div class="section-num">🧠</div>
+    <div><div class="section-title">Mini Quiz — ¿Cuánto aprendiste?</div><div class="section-sub">7 preguntas para comprobar tu comprensión sobre el marco teórico</div></div>
+  </div>
+  <div class="quiz-section">
+    <div class="quiz-header"><h3>Test de comprensión: Marco Teórico</h3><p>Selecciona la mejor respuesta. Recibirás retroalimentación inmediata.</p></div>
+    <div class="quiz-body">
+      <div class="quiz-q" id="q1"><div class="quiz-q-num">Pregunta 1 de 7</div><div class="quiz-q-text">¿Cuál de las siguientes afirmaciones describe mejor qué es un marco teórico?</div><div class="quiz-options"><div class="quiz-opt" onclick="answer(this,'q1','wrong')"><div class="quiz-opt-letter">A</div>Un resumen de todos los libros y artículos que leímos sobre el tema.</div><div class="quiz-opt" onclick="answer(this,'q1','correct')"><div class="quiz-opt-letter">B</div>Un argumento construido con fuentes que organiza teorías, conceptos y evidencias para sustentar el problema de investigación.</div><div class="quiz-opt" onclick="answer(this,'q1','wrong')"><div class="quiz-opt-letter">C</div>Una lista de citas de autores reconocidos en el área.</div><div class="quiz-opt" onclick="answer(this,'q1','wrong')"><div class="quiz-opt-letter">D</div>La repetición más extensa de la fundamentación.</div></div><div class="quiz-feedback correct" id="q1-ok">✅ <strong>¡Correcto!</strong> El marco teórico es un argumento organizado, no un resumen ni lista de citas.</div><div class="quiz-feedback wrong" id="q1-fail">❌ <strong>No es esa.</strong> El marco teórico es un argumento construido con fuentes, no un resumen ni una repetición de la fundamentación.</div></div>
+      <div class="quiz-q" id="q2"><div class="quiz-q-num">Pregunta 2 de 7</div><div class="quiz-q-text">¿Cuál es el criterio de actualidad que deben cumplir las fuentes?</div><div class="quiz-options"><div class="quiz-opt" onclick="answer(this,'q2','wrong')"><div class="quiz-opt-letter">A</div>Todas las fuentes deben ser de los últimos 2 años.</div><div class="quiz-opt" onclick="answer(this,'q2','wrong')"><div class="quiz-opt-letter">B</div>No existe criterio de antigüedad si las fuentes son académicas.</div><div class="quiz-opt" onclick="answer(this,'q2','correct')"><div class="quiz-opt-letter">C</div>Al menos el 80% de las fuentes debe tener una antigüedad máxima de 5 años.</div><div class="quiz-opt" onclick="answer(this,'q2','wrong')"><div class="quiz-opt-letter">D</div>Solo el 50% necesita ser reciente; el resto puede ser clásico.</div></div><div class="quiz-feedback correct" id="q2-ok">✅ <strong>¡Correcto!</strong> El 80% de las fuentes debe tener una antigüedad máxima de 5 años.</div><div class="quiz-feedback wrong" id="q2-fail">❌ <strong>Incorrecto.</strong> Al menos el 80% de las fuentes debe tener antigüedad máxima de 5 años.</div></div>
+      <div class="quiz-q" id="q3"><div class="quiz-q-num">Pregunta 3 de 7</div><div class="quiz-q-text">Un estudiante organiza su marco teórico con capítulos: 1) Historia de la educación mundial, 2) Sociología del deporte, 3) Rendimiento académico en Chile. Su tema es motivación en Educación Física. ¿Cuál es el problema?</div><div class="quiz-options"><div class="quiz-opt" onclick="answer(this,'q3','wrong')"><div class="quiz-opt-letter">A</div>Tiene muy pocos capítulos.</div><div class="quiz-opt" onclick="answer(this,'q3','wrong')"><div class="quiz-opt-letter">B</div>Los títulos son demasiado específicos.</div><div class="quiz-opt" onclick="answer(this,'q3','correct')"><div class="quiz-opt-letter">C</div>Los capítulos no se vinculan al problema de investigación ni tienen lógica argumental.</div><div class="quiz-opt" onclick="answer(this,'q3','wrong')"><div class="quiz-opt-letter">D</div>Falta un capítulo sobre metodología.</div></div><div class="quiz-feedback correct" id="q3-ok">✅ <strong>¡Muy bien!</strong> Los capítulos deben vincularse directamente al problema. Por ejemplo: 1) Motivación estudiantil, 2) EF y aprendizaje, 3) Factores en contextos de EF en Chile.</div><div class="quiz-feedback wrong" id="q3-fail">❌ <strong>Piénsalo.</strong> Ningún capítulo está vinculado al tema: motivación en EF. Ese es el error central.</div></div>
+      <div class="quiz-q" id="q4"><div class="quiz-q-num">Pregunta 4 de 7</div><div class="quiz-q-text">¿Cuál de las siguientes fuentes NO es adecuada para el marco teórico?</div><div class="quiz-options"><div class="quiz-opt" onclick="answer(this,'q4','wrong')"><div class="quiz-opt-letter">A</div>Un artículo de Scielo publicado en 2022.</div><div class="quiz-opt" onclick="answer(this,'q4','wrong')"><div class="quiz-opt-letter">B</div>Una tesis de maestría de la Universidad de Chile, 2021.</div><div class="quiz-opt" onclick="answer(this,'q4','correct')"><div class="quiz-opt-letter">C</div>Una entrada de Wikipedia sobre motivación.</div><div class="quiz-opt" onclick="answer(this,'q4','wrong')"><div class="quiz-opt-letter">D</div>Un libro de Hernández Sampieri publicado por McGraw-Hill.</div></div><div class="quiz-feedback correct" id="q4-ok">✅ <strong>¡Correcto!</strong> Wikipedia no tiene revisión por pares. Usa artículos indexados, tesis y libros académicos.</div><div class="quiz-feedback wrong" id="q4-fail">❌ La fuente inadecuada es Wikipedia. Las otras son fuentes académicas válidas.</div></div>
+      <div class="quiz-q" id="q5"><div class="quiz-q-num">Pregunta 5 de 7</div><div class="quiz-q-text">¿Cuál es la diferencia principal entre la fundamentación y el marco teórico?</div><div class="quiz-options"><div class="quiz-opt" onclick="answer(this,'q5','wrong')"><div class="quiz-opt-letter">A</div>La fundamentación usa fuentes internacionales y el marco teórico solo nacionales.</div><div class="quiz-opt" onclick="answer(this,'q5','wrong')"><div class="quiz-opt-letter">B</div>No hay diferencia; el marco teórico es básicamente lo mismo pero más largo.</div><div class="quiz-opt" onclick="answer(this,'q5','correct')"><div class="quiz-opt-letter">C</div>La fundamentación esboza los conceptos brevemente; el marco teórico los desarrolla con profundidad en capítulos articulados.</div><div class="quiz-opt" onclick="answer(this,'q5','wrong')"><div class="quiz-opt-letter">D</div>La fundamentación se escribe al principio y el marco teórico al final del proceso.</div></div><div class="quiz-feedback correct" id="q5-ok">✅ <strong>¡Excelente!</strong> La fundamentación es el primer acercamiento; el marco teórico lo profundiza y organiza sistemáticamente.</div><div class="quiz-feedback wrong" id="q5-fail">❌ La diferencia clave es de profundidad y organización, no de momento ni de origen de fuentes.</div></div>
+      <div class="quiz-q" id="q6"><div class="quiz-q-num">Pregunta 6 de 7</div><div class="quiz-q-text">¿Cuál de los siguientes textos corresponde a una redacción académica correcta?</div><div class="quiz-options"><div class="quiz-opt" onclick="answer(this,'q6','wrong')"><div class="quiz-opt-letter">A</div>"Yo creo que la convivencia escolar es muy importante porque en mis prácticas vi muchos problemas."</div><div class="quiz-opt" onclick="answer(this,'q6','correct')"><div class="quiz-opt-letter">B</div>"La convivencia escolar constituye un elemento central en la calidad del proceso educativo, en tanto afecta directamente el clima de aula (Ascorra et al., 2016)."</div><div class="quiz-opt" onclick="answer(this,'q6','wrong')"><div class="quiz-opt-letter">C</div>"Según Wikipedia, la convivencia escolar es el conjunto de relaciones que se dan en el espacio escolar."</div><div class="quiz-opt" onclick="answer(this,'q6','wrong')"><div class="quiz-opt-letter">D</div>"La convivencia escolar es importante. Hay muchos estudios. Varios autores hablan de esto."</div></div><div class="quiz-feedback correct" id="q6-ok">✅ <strong>¡Correcto!</strong> La opción B usa tercera persona, desarrolla la idea con precisión y la respalda con cita APA.</div><div class="quiz-feedback wrong" id="q6-fail">❌ La correcta es la B: tercera persona, precisión conceptual y cita en APA.</div></div>
+      <div class="quiz-q" id="q7"><div class="quiz-q-num">Pregunta 7 de 7</div><div class="quiz-q-text">¿Cuántas revistas científicas distintas se recomienda consultar como mínimo?</div><div class="quiz-options"><div class="quiz-opt" onclick="answer(this,'q7','wrong')"><div class="quiz-opt-letter">A</div>Solo una, pero que sea reconocida.</div><div class="quiz-opt" onclick="answer(this,'q7','wrong')"><div class="quiz-opt-letter">B</div>Dos: una nacional y una internacional.</div><div class="quiz-opt" onclick="answer(this,'q7','correct')"><div class="quiz-opt-letter">C</div>Al menos 3 revistas científicas distintas del área.</div><div class="quiz-opt" onclick="answer(this,'q7','wrong')"><div class="quiz-opt-letter">D</div>No importa el número, solo que sean académicas.</div></div><div class="quiz-feedback correct" id="q7-ok">✅ <strong>¡Correcto!</strong> Al menos 3 revistas distintas garantizan diversidad de perspectivas.</div><div class="quiz-feedback wrong" id="q7-fail">❌ Se deben consultar al menos 3 revistas científicas distintas del área.</div></div>
+      <div class="quiz-actions"><button class="btn-quiz" onclick="submitQuiz()">Ver resultado final</button><button class="btn-quiz secondary" onclick="resetQuiz()">Reiniciar quiz</button></div>
+      <div class="quiz-score" id="quiz-score"><div class="score-badge" id="score-num">0/7</div><h4 id="score-title">—</h4><p id="score-msg">—</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="checklist">
+  <div class="section-header">
+    <div class="section-num">✓</div>
+    <div><div class="section-title">Checklist de autoevaluación</div><div class="section-sub">Valida tu preparación antes de la sesión presencial — 14 ítems</div></div>
+  </div>
+  <div class="checklist-grid">
+    <div class="cl-section"><div class="cl-head cl-blue">📋 Búsqueda y fuentes</div><div class="cl-items">
+      <div class="cl-item" onclick="toggleCheck(this)"><input type="checkbox"><label>¿Consulté al menos 3 revistas científicas del área de estudio?</label></div>
+      <div class="cl-item" onclick="toggleCheck(this)"><input type="checkbox"><label>¿El 80% de mis fuentes tiene antigüedad máxima de 5 años?</label></div>
+      <div class="cl-item" onclick="toggleCheck(this)"><input type="checkbox"><label>¿Busqué tesis relacionadas con mi tema?</label></div>
+      <div class="cl-item" onclick="toggleCheck(this)"><input type="checkbox"><label>¿Puedo nombrar los autores más importantes de mi área?</label></div>
+    </div></div>
+    <div class="cl-section"><div class="cl-head cl-teal">📋 Estructura y organización</div><div class="cl-items">
+      <div class="cl-item" onclick="toggleCheck(this)"><input type="checkbox"><label>¿Mi propuesta de marco teórico tiene 3 capítulos con 2–3 subcapítulos?</label></div>
+      <div class="cl-item" onclick="toggleCheck(this)"><input type="checkbox"><label>¿Los capítulos siguen una lógica argumental (de lo general a lo específico)?</label></div>
+      <div class="cl-item" onclick="toggleCheck(this)"><input type="checkbox"><label>¿Cada capítulo se vincula directamente con mi problema de investigación?</label></div>
+      <div class="cl-item" onclick="toggleCheck(this)"><input type="checkbox"><label>¿Los títulos de los capítulos son precisos y representan bien el contenido?</label></div>
+    </div></div>
+    <div class="cl-section"><div class="cl-head cl-amber">📋 Comprensión conceptual</div><div class="cl-items">
+      <div class="cl-item" onclick="toggleCheck(this)"><input type="checkbox"><label>¿El marco teórico profundiza la fundamentación sin repetirla?</label></div>
+      <div class="cl-item" onclick="toggleCheck(this)"><input type="checkbox"><label>¿Usé tono académico y por qué no se usa primera persona?</label></div>
+      <div class="cl-item" onclick="toggleCheck(this)"><input type="checkbox"><label>¿Comprendo la diferencia entre parafrasear y copiar citas?</label></div>
+      <div class="cl-item" onclick="toggleCheck(this)"><input type="checkbox"><label>¿Completé los ejercicios interactivos de esta guía?</label></div>
+    </div></div>
+    <div class="cl-section"><div class="cl-head cl-gray">📋 Formato y ética</div><div class="cl-items">
+      <div class="cl-item" onclick="toggleCheck(this)"><input type="checkbox"><label>¿Apliqué el formato APA 7 en citas y referencias?</label></div>
+      <div class="cl-item" onclick="toggleCheck(this)"><input type="checkbox"><label>¿Completé la declaración del uso de IA según la pauta?</label></div>
+    </div></div>
+  </div>
+</section>
+
+<section class="section" id="bibliografia">
+  <div class="section-header">
+    <div class="section-num">📚</div>
+    <div><div class="section-title">Referencias bibliográficas</div><div class="section-sub">Fuentes base — formato APA 7</div></div>
+  </div>
+  <ul class="bib-list">
+    <li><strong>Ferreyra, A., &amp; De Longhi, A. L. (2014).</strong> <em>Metodología de la investigación I</em> (1.ª ed.). Encuentro Grupo Editor.</li>
+    <li><strong>Hernández Sampieri, R., Fernández Collado, C., &amp; Baptista Lucio, P. (2014).</strong> <em>Metodología de la investigación</em> (6.ª ed.). McGraw-Hill Education.</li>
+  </ul>
+</section>
+</main>
+<footer class="site-footer" style="text-align: center; padding: 20px; border-top: 1px solid #ccc; width: 100%; clear: both;">
+  <p>
+    <strong>Universidad de Los Lagos</strong> · Departamento de Educación · Investigación Educativa
+  </p>
+  <div class="cc-license" style="margin-top: 15px;">
+    <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">
+      <img alt="Licencia Creative Commons" style="border-width:0; margin-bottom: 5px;" 
+           src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" />
+    </a>
+    <br />
+    <small>
+      Esta obra de <strong>Jesús Sánchez Alvarado</strong> está bajo una 
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" style="color: inherit;">
+        Licencia Creative Commons Atribución-NoComercial 4.0 Internacional
+      </a>.
+    </small>
+  </div>
+</footer>
+
+
+<script>
+// ── HELPERS
+function toggle(t){t.classList.toggle('open');t.nextElementSibling.classList.toggle('open');}
+
+// ── DIAG
+const diagDone={};
+function diagAnswer(idx,type){
+  if(diagDone[idx])return;
+  diagDone[idx]=true;
+  const btns=document.querySelectorAll('#dq'+idx+' .diag-btn');
+  btns.forEach(b=>b.style.pointerEvents='none');
+  const sel=event.target;
+  if(type==='yes')sel.classList.add('yes');
+  else if(type==='partial')sel.classList.add('partial');
+  else sel.classList.add('no');
+  const ok=document.getElementById('dfb'+idx+'-yes');
+  const warn=document.getElementById('dfb'+idx+'-partial');
+  const alert=document.getElementById('dfb'+idx+'-no');
+  if(type==='yes'){ok.style.display='block';}
+  else if(type==='partial'){warn.style.display='block';}
+  else{alert.style.display='block';}
+}
+function resetDiag(){
+  for(let i=0;i<4;i++){
+    delete diagDone[i];
+    document.querySelectorAll('#dq'+i+' .diag-btn').forEach(b=>{b.style.pointerEvents='';b.className='diag-btn';});
+    ['yes','partial','no'].forEach(t=>{const el=document.getElementById('dfb'+i+'-'+t);if(el)el.style.display='none';});
+  }
+}
+
+// ── CLASSIFY
+const clsAnswers={};
+const clsCorrect={0:'A',1:'A',2:'A',3:'I',4:'I',5:'I',6:'E',7:'E',8:'E'};
+const clsLabels={A:'Amplio',I:'Intermedio',E:'Específico'};
+const clsFb={
+  A:'✅ Correcto. Es un concepto amplio: abarca el tema de forma general y encabezaría un capítulo central.',
+  I:'✅ Correcto. Es un concepto intermedio: relacionado con el central, pero más acotado; iría en un subcapítulo.',
+  E:'✅ Correcto. Es un concepto específico del contexto particular de la investigación.'
+};
+const clsFbWrong={
+  A:{I:'❌ No es intermedio. Este concepto es lo suficientemente amplio para encabezar un capítulo completo.',E:'❌ No es específico. Este es un concepto central y amplio del tema.'},
+  I:{A:'❌ No es amplio. Es más acotado que el concepto central; iría como subcapítulo.',E:'❌ No es específico del contexto. Es un concepto intermedio que va entre el central y lo situacional.'},
+  E:{A:'❌ No es amplio. Este concepto se refiere a un contexto o población particular.',I:'❌ No es intermedio. Este concepto alude a una realidad muy específica (población, lugar) de la investigación.'}
+};
+let clsScore=0;
+function classify(idx,chosen,correct){
+  if(clsAnswers[idx])return;
+  clsAnswers[idx]=chosen;
+  const item=document.getElementById('ci'+idx);
+  item.querySelectorAll('.cls-btn').forEach(b=>b.style.pointerEvents='none');
+  const fb=document.getElementById('cf'+idx);
+  if(chosen===correct){item.classList.add('correct');fb.style.color='#0A4030';fb.textContent=clsFb[correct];clsScore++;}
+  else{item.classList.add('wrong');fb.style.color='var(--red)';fb.textContent=(clsFbWrong[correct]&&clsFbWrong[correct][chosen])||'❌ Incorrecto. La clasificación correcta es: '+clsLabels[correct]+'.';}
+  fb.style.display='block';
+  if(Object.keys(clsAnswers).length===9){
+    const sc=document.getElementById('cls-score');
+    sc.style.display='block';
+    sc.textContent='Resultado: '+clsScore+'/9 correctos. '+(clsScore>=7?'¡Excelente manejo de la jerarquía conceptual!':clsScore>=4?'Buen intento. Repasa los conceptos intermedios y específicos.':'Te recomendamos revisar la sección de jerarquización de esta guía.');
+  }
+}
+function resetClassify(){
+  Object.keys(clsAnswers).forEach(k=>delete clsAnswers[k]);
+  clsScore=0;
+  for(let i=0;i<9;i++){
+    const item=document.getElementById('ci'+i);
+    item.className='cls-item';
+    item.querySelectorAll('.cls-btn').forEach(b=>b.style.pointerEvents='');
+    const fb=document.getElementById('cf'+i);
+    fb.style.display='none';fb.textContent='';
+  }
+  const sc=document.getElementById('cls-score');sc.style.display='none';
+}
+
+// ── SOURCE QUIZ
+const sqDone={};
+function sqAnswer(btn,chosen,correct,idx){
+  if(sqDone[idx])return;
+  sqDone[idx]=true;
+  btn.parentElement.querySelectorAll('.sq-btn').forEach(b=>b.style.pointerEvents='none');
+  const isCorrect=(chosen==='yes')===correct;
+  const fbOk=document.getElementById('sqfb'+idx);
+  const fbWr=document.getElementById('sqfb'+idx+'w');
+  if(isCorrect){fbOk.style.display='block';fbOk.className='sq-fb correct';}
+  else{fbWr.style.display='block';fbWr.className='sq-fb wrong';}
+}
+function resetSQ(){
+  for(let i=0;i<5;i++){
+    delete sqDone[i];
+    const item=document.querySelectorAll('.sq-item')[i];
+    item.querySelectorAll('.sq-btn').forEach(b=>b.style.pointerEvents='');
+    const fbOk=document.getElementById('sqfb'+i);
+    const fbWr=document.getElementById('sqfb'+i+'w');
+    if(fbOk)fbOk.style.display='none';
+    if(fbWr)fbWr.style.display='none';
+  }
+}
+
+// ── INTRUDER
+let intruderDone=false;
+function intruder(el,isIntruder){
+  if(intruderDone)return;
+  intruderDone=true;
+  document.querySelectorAll('.intruder-opt').forEach(o=>o.style.pointerEvents='none');
+  el.classList.add(isIntruder?'correct':'wrong');
+  document.getElementById(isIntruder?'intruder-ok':'intruder-fail').style.display='block';
+}
+function resetIntruder(){
+  intruderDone=false;
+  document.querySelectorAll('.intruder-opt').forEach(o=>{o.style.pointerEvents='';o.className='intruder-opt';});
+  document.getElementById('intruder-ok').style.display='none';
+  document.getElementById('intruder-fail').style.display='none';
+}
+
+// ── ORDER
+let orderDone=false;
+function verifyOrder(){
+  if(orderDone)return;
+  const v0=document.getElementById('os0').value;
+  const v1=document.getElementById('os1').value;
+  const v2=document.getElementById('os2').value;
+  if(!v0||!v1||!v2){alert('Selecciona un orden para cada capítulo antes de verificar.');return;}
+  orderDone=true;
+  // correct: or0=3rd, or1=1st, or2=2nd
+  const correct={or0:'3',or1:'1',or2:'2'};
+  const vals={or0:v0,or1:v1,or2:v2};
+  let allOk=true;
+  Object.keys(correct).forEach(id=>{
+    const row=document.getElementById(id);
+    if(vals[id]===correct[id]){row.classList.add('correct');}
+    else{row.classList.add('wrong');allOk=false;}
+    document.getElementById(id.replace('or','os')).disabled=true;
+  });
+  document.getElementById(allOk?'order-ok':'order-fail').style.display='block';
+}
+function resetOrder(){
+  orderDone=false;
+  ['or0','or1','or2'].forEach(id=>{
+    const row=document.getElementById(id);
+    row.classList.remove('correct','wrong');
+    const sel=document.getElementById(id.replace('or','os'));
+    sel.value='';sel.disabled=false;
+  });
+  document.getElementById('order-ok').style.display='none';
+  document.getElementById('order-fail').style.display='none';
+}
+
+// ── PARA COMPONENTS
+const paraDone={};
+function checkPara(idx,chosen,correct){
+  if(paraDone[idx])return;
+  paraDone[idx]=true;
+  const row=document.getElementById('pr'+idx);
+  const sel=document.getElementById('psel'+idx);
+  sel.disabled=true;
+  row.classList.add(chosen===correct?'correct':'wrong');
+}
+function resetPara(){
+  for(let i=0;i<4;i++){
+    delete paraDone[i];
+    document.getElementById('pr'+i).className='para-part-row';
+    const s=document.getElementById('psel'+i);s.value='';s.disabled=false;
+  }
+}
+
+// ── ERROR DETECT
+const realErrors=[0,1,2,3]; // indices of real errors
+const errState={};
+function toggleErr(idx){
+  const row=document.getElementById('ec'+idx);
+  const cb=document.getElementById('ech'+idx);
+  cb.checked=!cb.checked;
+  errState[idx]=cb.checked;
+}
+function verifyErrors(){
+  realErrors.forEach(idx=>{
+    const row=document.getElementById('ec'+idx);
+    const cb=document.getElementById('ech'+idx);
+    const det=document.getElementById('ed'+idx);
+    if(cb.checked&&realErrors.includes(idx)){row.classList.add('correct-check');det.style.display='block';}
+    else if(!cb.checked&&realErrors.includes(idx)){row.classList.add('missed-check');det.style.display='block';}
+    else if(cb.checked&&!realErrors.includes(idx)){row.classList.add('false-check');det.style.display='block';}
+    document.getElementById('ec'+idx).onclick=null;
+    cb.disabled=true;
+  });
+  // also handle index 4 (not a real error)
+  const r4=document.getElementById('ec4');
+  const cb4=document.getElementById('ech4');
+  const d4=document.getElementById('ed4');
+  if(cb4.checked){r4.classList.add('false-check');d4.style.display='block';}
+  cb4.disabled=true;r4.onclick=null;
+  const checked=realErrors.filter(i=>document.getElementById('ech'+i).checked).length;
+  const fb=document.getElementById('err-global-fb');
+  fb.style.display='block';
+  if(checked===4&&!document.getElementById('ech4').checked){fb.className='quiz-feedback correct';fb.textContent='✅ ¡Excelente! Detectaste los 4 errores reales del párrafo.';}
+  else if(checked>=2){fb.className='quiz-feedback correct';fb.textContent='✅ Bien. Detectaste '+checked+' de 4 errores. Revisa los que quedaron sin marcar.';}
+  else{fb.className='quiz-feedback wrong';fb.textContent='❌ Detectaste solo '+checked+' errores. Vuelve a leer el párrafo con atención: hay 4 problemas reales.';}
+}
+function resetErrors(){
+  [0,1,2,3,4].forEach(i=>{
+    const row=document.getElementById('ec'+i);
+    const cb=document.getElementById('ech'+i);
+    const det=document.getElementById('ed'+i);
+    row.className='err-check-row';
+    row.onclick=()=>toggleErr(i);
+    cb.checked=false;cb.disabled=false;
+    det.style.display='none';
+    delete errState[i];
+  });
+  document.getElementById('err-global-fb').style.display='none';
+}
+
+// ── MAIN QUIZ
+const answers={};
+function answer(opt,qId,type){
+  if(answers[qId])return;
+  answers[qId]=type;
+  opt.parentElement.querySelectorAll('.quiz-opt').forEach(o=>{o.style.pointerEvents='none';if(o===opt)o.classList.add(type);});
+  document.getElementById(qId+(type==='correct'?'-ok':'-fail')).style.display='block';
+}
+function submitQuiz(){
+  const total=7;const score=Object.values(answers).filter(v=>v==='correct').length;
+  document.getElementById('score-num').textContent=score+'/'+total;
+  const msgs=[[7,'¡Perfecto! 🎉','Dominas los conceptos del marco teórico. ¡Estás listo para el taller!'],[5,'¡Muy bien! 👏','Tienes una comprensión sólida. Revisa los ítems que no lograste.'],[3,'Vas por buen camino 📖','Tienes la base, pero hay aspectos por repasar. Vuelve a leer las secciones anteriores.'],[0,'Necesitas reforzar 💪','Te recomendamos releer esta guía completa antes de empezar.']];
+  const [,title,msg]=msgs.find(([min])=>score>=min);
+  document.getElementById('score-title').textContent=title;
+  document.getElementById('score-msg').textContent=msg;
+  const sc=document.getElementById('quiz-score');sc.style.display='block';sc.scrollIntoView({behavior:'smooth',block:'center'});
+}
+function resetQuiz(){
+  Object.keys(answers).forEach(k=>delete answers[k]);
+  document.querySelectorAll('.quiz-opt').forEach(o=>{o.className='quiz-opt';o.style.pointerEvents='';});
+  document.querySelectorAll('.quiz-feedback').forEach(f=>f.style.display='none');
+  document.getElementById('quiz-score').style.display='none';
+}
+
+// ── CHECKLIST PROGRESS
+function toggleCheck(item){
+  const cb=item.querySelector('input[type=checkbox]');cb.checked=!cb.checked;
+  item.classList.toggle('checked',cb.checked);updateProgress();
+}
+function updateProgress(){
+  const all=document.querySelectorAll('.cl-item input[type=checkbox]');
+  const checked=document.querySelectorAll('.cl-item input[type=checkbox]:checked');
+  const pct=Math.round((checked.length/all.length)*100);
+  document.getElementById('prog-fill').style.width=pct+'%';
+  document.getElementById('prog-txt').textContent=checked.length+' / '+all.length+' ítems completados';
+}
+// ── BOTÓN VOLVER ARRIBA ──
+  window.onscroll = function() {
+    const btn = document.getElementById("btn-arriba");
+    // Muestra el botón si bajamos más de 300 píxeles
+    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+      btn.style.display = "block";
+    } else {
+      btn.style.display = "none";
+    }
+  };
+
+  function volverArriba() {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth" // Sube de forma fluida
+    });
+  }
+</script>
+<button id="btn-arriba" onclick="volverArriba()" title="Volver al inicio">↑</button>
+</body>
+</html>
