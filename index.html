@@ -358,7 +358,7 @@ body{font-family:var(--font-body);background:var(--gray-50);color:var(--gray-900
     <div><div class="section-title">¿Qué es el Marco Teórico y para qué sirve?</div><div class="section-sub">Definición · propósito · error frecuente</div></div>
   </div>
   <div class="card-grid" style="margin-bottom:1rem;">
-    <div class="card"><div class="card-icon ci-blue">📖</div><h3>¿Qué es?</h3><p>Es la base conceptual que sostiene tu investigación. Reúne, organiza y articula las teorías, conceptos y evidencias que permiten comprender el problema. <strong>No es un resumen de lecturas ni una lista de citas: es un argumento construido con fuentes.</strong></p></div>
+    <div class="card"><div class="card-icon ci-blue">📖</div><h3>¿Qué es?</h3><p>Es la base conceptual que sostiene tu investigación. Reúne, organiza y articula las teorías, los conceptos, las leyes/normativas, y resultados con evidencias que permiten comprender el problema. <strong>No es un resumen de lecturas ni una lista de citas: es un argumento construido con fuentes.</strong></p></div>
     <div class="card"><div class="card-icon ci-teal">🎯</div><h3>¿Para qué sirve?</h3><p>Le da sustento a tu pregunta y objetivos, permite interpretar los datos que recogerás y conecta tu investigación con el conocimiento ya existente.</p></div>
     <div class="card"><div class="card-icon ci-amber">🧱</div><h3>¿Cómo se construye?</h3><p>En capítulos y subcapítulos ordenados de forma lógica y progresiva: de lo más general a lo más específico, siempre vinculados al problema de investigación.</p><span class="ref-tag">Hernández et al., 2014</span></div>
     <div class="card"><div class="card-icon ci-red">⚠️</div><h3>Error frecuente</h3><p>Copiar párrafos de distintos autores sin relacionarlos ni vincularlos al problema. El marco teórico <strong>no es un collage</strong>: cada idea debe estar fundamentada y conectada.</p></div>
@@ -389,8 +389,8 @@ body{font-family:var(--font-body);background:var(--gray-50);color:var(--gray-900
     <tr><th>En la fundamentación</th><th>En el marco teórico</th></tr>
     <tr><td>Mencioné los conceptos clave del tema</td><td>Los defino con profundidad, desde múltiples fuentes y perspectivas</td></tr>
     <tr><td>Describí investigaciones relevantes brevemente</td><td>Las organizo en capítulos y subcapítulos articulados con lógica argumental</td></tr>
-    <tr><td>Identifiqué el vacío en la literatura </td><td>Profundizo en ese vacío refiriéndome a estudios especializados y actualizados</td></tr>
     <tr><td>Cité normativa chilena e internacional (máx. 3)</td><td>Las organizo como capítulo y subcapítulos, de acuerdo al problema</td></tr>
+    <tr><td>Identifiqué el vacío en la literatura </td><td>Profundizo en ese vacío refiriéndome a estudios especializados y actualizados</td></tr>
     <tr><td>Usé 5+ referencias con 80% de los últimos 5 años</td><td>Amplío el volumen de fuentes y mantengo el criterio de actualidad</td></tr>
   </table>
 </section>
@@ -400,12 +400,19 @@ body{font-family:var(--font-body);background:var(--gray-50);color:var(--gray-900
     <div class="section-num">3</div>
     <div><div class="section-title">Actividades de comprensión y práctica</div><div class="section-sub">Ejercicios interactivos para prepararte antes del taller presencial</div></div>
   </div>
-
-  <div class="activity">
-    <div class="activity-header"><div class="activity-num">1</div><div><div class="activity-title">Auto-diagnóstico: ¿Estás listo para comenzar?</div><div class="activity-desc">Revisa mentalmente tu fundamentación antes de avanzar al marco teórico</div></div></div>
+<div class="activity">
+    <div class="activity-header">
+      <div class="activity-num">1</div>
+      <div>
+        <div class="activity-title">Auto-diagnóstico: ¿Estás listo para comenzar?</div>
+        <div class="activity-desc">Revisa mentalmente tu fundamentación antes de avanzar al marco teórico</div>
+      </div>
+    </div>
     <div class="activity-body">
       <p style="font-size:.83rem;margin-bottom:1rem;color:var(--gray-700)">Responde con honestidad. Si tienes dudas o respondiste "No", te conviene revisar tu fundamentación antes del taller.</p>
       <div id="diag-container">
+        
+        <!-- Pregunta 1: Problema -->
         <div class="diag-q" id="dq0">
           <div class="diag-q-text">1. ¿Identificaste claramente el fenómeno o problema que quieres investigar en tu fundamentación?</div>
           <div class="diag-btns">
@@ -417,6 +424,8 @@ body{font-family:var(--font-body);background:var(--gray-50);color:var(--gray-900
           <div class="diag-fb warn" id="dfb0-partial">🤔 Si no tienes el problema del todo claro, el marco teórico no tendrá un norte. Te sugerimos revisitar la sección 1.1 de tu fundamentación.</div>
           <div class="diag-fb alert" id="dfb0-no">⚠️ Es importante definir el problema antes de avanzar. Vuelve a tu fundamentación y revisa la pregunta de investigación y los objetivos.</div>
         </div>
+
+        <!-- Pregunta 2: Conceptos clave -->
         <div class="diag-q" id="dq1">
           <div class="diag-q-text">2. ¿Puedes nombrar al menos 2 conceptos clave que aparecieron en tu fundamentación?</div>
           <div class="diag-btns">
@@ -428,17 +437,21 @@ body{font-family:var(--font-body);background:var(--gray-50);color:var(--gray-900
           <div class="diag-fb warn" id="dfb1-partial">🤔 Intenta listarlos. Esos conceptos determinarán la estructura de tu marco teórico.</div>
           <div class="diag-fb alert" id="dfb1-no">⚠️ Vuelve a leer la sección A (Perspectiva Conceptual) de tu fundamentación. Allí están los conceptos que deberás desarrollar en profundidad.</div>
         </div>
+
+        <!-- Pregunta 3: Leyes / Normativas (NUEVA) -->
         <div class="diag-q" id="dq2">
-          <div class="diag-q-text">3. ¿Identificaste el vacío o tensión de investigación al final de la fundamentación?</div>
+          <div class="diag-q-text">3. ¿Lograste vincular leyes o normativas que se vinculen a tu problema?</div>
           <div class="diag-btns">
-            <button class="diag-btn" onclick="diagAnswer(2,'yes')">✅ Sí, lo tengo definido</button>
-            <button class="diag-btn" onclick="diagAnswer(2,'partial')">🤔 Más o menos</button>
-            <button class="diag-btn" onclick="diagAnswer(2,'no')">❌ No lo explicitamos</button>
+            <button class="diag-btn" onclick="diagAnswer(2,'yes')">✅ Sí, las tengo identificadas</button>
+            <button class="diag-btn" onclick="diagAnswer(2,'partial')">🤔 Algunas, no todas</button>
+            <button class="diag-btn" onclick="diagAnswer(2,'no')">❌ No encontré aún</button>
           </div>
-          <div class="diag-fb ok" id="dfb2-yes">✅ Perfecto. El vacío detectado orientará el cierre de tu marco teórico, especialmente el último subcapítulo.</div>
-          <div class="diag-fb warn" id="dfb2-partial">🤔 El vacío es crucial: es lo que justifica tu investigación. Revisa la sección D (Cierre) de tu fundamentación.</div>
-          <div class="diag-fb alert" id="dfb2-no">⚠️ Sin un vacío claro, el marco teórico pierde su razón de ser. Antes de empezar, define: ¿qué no se sabe aún sobre tu tema? ¿Qué falta investigar?</div>
+          <div class="diag-fb ok" id="dfb2-yes">✅ Perfecto. El marco normativo fortalece la justificación y delimitación de tu investigación.</div>
+          <div class="diag-fb warn" id="dfb2-partial">🤔 Revisa si existen leyes nacionales, políticas públicas o normativas internacionales relacionadas con tu objeto de estudio.</div>
+          <div class="diag-fb alert" id="dfb2-no">⚠️ Es importante anclar tu problema en el marco legal vigente. Busca en repositorios oficiales o bases de datos jurídicas.</div>
         </div>
+
+        <!-- Pregunta 4: Investigaciones empíricas -->
         <div class="diag-q" id="dq3">
           <div class="diag-q-text">4. ¿Consultaste investigaciones empíricas (nacionales e internacionales) en tu fundamentación?</div>
           <div class="diag-btns">
@@ -450,6 +463,20 @@ body{font-family:var(--font-body);background:var(--gray-50);color:var(--gray-900
           <div class="diag-fb warn" id="dfb3-partial">🤔 El marco teórico necesita más fuentes. Antes de empezar, busca al menos 3 revistas científicas del área. Mira la Actividad 3 de esta guía.</div>
           <div class="diag-fb alert" id="dfb3-no">⚠️ El marco teórico requiere sustento empírico sólido. Antes de comenzar, debes buscar investigaciones en bases de datos académicas. Revisa la Actividad 3.</div>
         </div>
+
+        <!-- Pregunta 5: Vacío o tensión de investigación (ANTES ERA LA 3) -->
+        <div class="diag-q" id="dq4">
+          <div class="diag-q-text">5. ¿Identificaste el vacío o tensión de investigación al final de la fundamentación?</div>
+          <div class="diag-btns">
+            <button class="diag-btn" onclick="diagAnswer(4,'yes')">✅ Sí, lo tengo definido</button>
+            <button class="diag-btn" onclick="diagAnswer(4,'partial')">🤔 Más o menos</button>
+            <button class="diag-btn" onclick="diagAnswer(4,'no')">❌ No lo explicitamos</button>
+          </div>
+          <div class="diag-fb ok" id="dfb4-yes">✅ Perfecto. El vacío detectado orientará el cierre de tu marco teórico, especialmente el último subcapítulo.</div>
+          <div class="diag-fb warn" id="dfb4-partial">🤔 El vacío es crucial: es lo que justifica tu investigación. Revisa la sección D (Cierre) de tu fundamentación.</div>
+          <div class="diag-fb alert" id="dfb4-no">⚠️ Sin un vacío claro, el marco teórico pierde su razón de ser. Antes de empezar, define: ¿qué no se sabe aún sobre tu tema? ¿Qué falta investigar?</div>
+        </div>
+
       </div>
       <button class="reset-btn" onclick="resetDiag()">↺ Reiniciar diagnóstico</button>
     </div>
@@ -458,7 +485,7 @@ body{font-family:var(--font-body);background:var(--gray-50);color:var(--gray-900
   <div class="activity">
     <div class="activity-header"><div class="activity-num">2</div><div><div class="activity-title">Jerarquización de conceptos</div><div class="activity-desc">Practica cómo clasificar conceptos por nivel de amplitud</div></div></div>
     <div class="activity-body">
-      <p style="font-size:.83rem;margin-bottom:.75rem;color:var(--gray-700)"><strong>Instrucción:</strong> Para cada concepto del tema modelo <em>"Motivación estudiantil en Educación Física"</em>, indica si es <strong>Amplio</strong>, <strong>Intermedio</strong> o <strong>Específico</strong>. Recibirás retroalimentación inmediata.</p>
+      <p style="font-size:.83rem;margin-bottom:.75rem;color:var(--gray-700)"><strong>Instrucción:</strong> Para cada concepto de este ejemplo de tema <em>"Motivación estudiantil en Educación Física"</em>, indica si es <strong>Amplio</strong>, <strong>Intermedio</strong> o <strong>Específico</strong>. Recibirás retroalimentación inmediata.</p>
       <div class="cls-grid" id="cls-grid">
         <div class="cls-item" id="ci0"><div class="cls-label">Motivación estudiantil</div><div class="cls-btns"><button class="cls-btn" onclick="classify(0,'A','A')">Amplio</button><button class="cls-btn" onclick="classify(0,'I','A')">Intermedio</button><button class="cls-btn" onclick="classify(0,'E','A')">Específico</button></div><div class="cls-fb" id="cf0"></div></div>
         <div class="cls-item" id="ci1"><div class="cls-label">Educación Física</div><div class="cls-btns"><button class="cls-btn" onclick="classify(1,'A','A')">Amplio</button><button class="cls-btn" onclick="classify(1,'I','A')">Intermedio</button><button class="cls-btn" onclick="classify(1,'E','A')">Específico</button></div><div class="cls-fb" id="cf1"></div></div>
@@ -522,7 +549,7 @@ body{font-family:var(--font-body);background:var(--gray-50);color:var(--gray-900
           </table>
         </div>
       </div>
-      <p style="font-size:.85rem;font-weight:600;color:var(--blue-dark);margin:1rem 0 .5rem;">Ejercicio A — Detecta el capítulo intruso</p>
+      <p style="font-size:.85rem;font-weight:600;color:var(--blue-dark);margin:1rem 0 .5rem;">Ejercicio A — Detecta el capítulo que no corresponde</p>
       <p style="font-size:.82rem;color:var(--gray-700);margin-bottom:.75rem;">El tema de investigación es: <strong>"Motivación en clases de Educación Física en enseñanza media"</strong>. Uno de los siguientes capítulos <strong>NO pertenece</strong> a este marco teórico. ¿Cuál es?</p>
       <div class="intruder-opts" id="intruder-opts">
         <div class="intruder-opt" onclick="intruder(this,false)">Capítulo 1: Motivación estudiantil y sus dimensiones</div>
@@ -531,7 +558,7 @@ body{font-family:var(--font-body);background:var(--gray-50);color:var(--gray-900
         <div class="intruder-opt" onclick="intruder(this,false)">Capítulo 4: Factores que inciden en la motivación en contextos de EF en Chile</div>
       </div>
       <div class="quiz-feedback correct" id="intruder-ok">✅ ¡Correcto! La historia de los Juegos Olímpicos no se vincula al problema de investigación (motivación en EF escolar). Un capítulo que no responde directamente al problema no pertenece al marco teórico.</div>
-      <div class="quiz-feedback wrong" id="intruder-fail">❌ No es ese. El capítulo intruso es el de la "Historia de los Juegos Olímpicos", que nada tiene que ver con motivación en el aula de EF escolar.</div>
+      <div class="quiz-feedback wrong" id="intruder-fail">❌ No es ese. El capítulo que no corresponde es el de la "Historia de los Juegos Olímpicos", que nada tiene que ver con motivación en el aula de EF escolar.</div>
       <button class="reset-btn" onclick="resetIntruder()">↺ Reiniciar</button>
 
       <p style="font-size:.85rem;font-weight:600;color:var(--blue-dark);margin:1.25rem 0 .5rem;">Ejercicio B — Ordena los capítulos de mayor a menor especificidad</p>
@@ -628,12 +655,12 @@ body{font-family:var(--font-body);background:var(--gray-50);color:var(--gray-900
   <div class="quiz-section">
     <div class="quiz-header"><h3>Test de comprensión: Marco Teórico</h3><p>Selecciona la mejor respuesta. Recibirás retroalimentación inmediata.</p></div>
     <div class="quiz-body">
-      <div class="quiz-q" id="q1"><div class="quiz-q-num">Pregunta 1 de 7</div><div class="quiz-q-text">¿Cuál de las siguientes afirmaciones describe mejor qué es un marco teórico?</div><div class="quiz-options"><div class="quiz-opt" onclick="answer(this,'q1','wrong')"><div class="quiz-opt-letter">A</div>Un resumen de todos los libros y artículos que leímos sobre el tema.</div><div class="quiz-opt" onclick="answer(this,'q1','correct')"><div class="quiz-opt-letter">B</div>Un argumento construido con fuentes que organiza teorías, conceptos y evidencias para sustentar el problema de investigación.</div><div class="quiz-opt" onclick="answer(this,'q1','wrong')"><div class="quiz-opt-letter">C</div>Una lista de citas de autores reconocidos en el área.</div><div class="quiz-opt" onclick="answer(this,'q1','wrong')"><div class="quiz-opt-letter">D</div>La repetición más extensa de la fundamentación.</div></div><div class="quiz-feedback correct" id="q1-ok">✅ <strong>¡Correcto!</strong> El marco teórico es un argumento organizado, no un resumen ni lista de citas.</div><div class="quiz-feedback wrong" id="q1-fail">❌ <strong>No es esa.</strong> El marco teórico es un argumento construido con fuentes, no un resumen ni una repetición de la fundamentación.</div></div>
+      <div class="quiz-q" id="q1"><div class="quiz-q-num">Pregunta 1 de 7</div><div class="quiz-q-text">¿Cuál de las siguientes afirmaciones describe mejor qué es un marco teórico?</div><div class="quiz-options"><div class="quiz-opt" onclick="answer(this,'q1','wrong')"><div class="quiz-opt-letter">A</div>Un resumen de todos los libros y artículos que leímos sobre el tema.</div><div class="quiz-opt" onclick="answer(this,'q1','correct')"><div class="quiz-opt-letter">B</div>Un argumento construido con fuentes que organiza teorías, conceptos, leyes/normativas, y evidencias para sustentar el problema de investigación.</div><div class="quiz-opt" onclick="answer(this,'q1','wrong')"><div class="quiz-opt-letter">C</div>Una lista de citas de autores reconocidos en el área.</div><div class="quiz-opt" onclick="answer(this,'q1','wrong')"><div class="quiz-opt-letter">D</div>La repetición más extensa de la fundamentación.</div></div><div class="quiz-feedback correct" id="q1-ok">✅ <strong>¡Correcto!</strong> El marco teórico es un argumento organizado, no un resumen ni lista de citas.</div><div class="quiz-feedback wrong" id="q1-fail">❌ <strong>No es esa.</strong> El marco teórico es un argumento construido con fuentes, no un resumen ni una repetición de la fundamentación.</div></div>
       <div class="quiz-q" id="q2"><div class="quiz-q-num">Pregunta 2 de 7</div><div class="quiz-q-text">¿Cuál es el criterio de actualidad que deben cumplir las fuentes?</div><div class="quiz-options"><div class="quiz-opt" onclick="answer(this,'q2','wrong')"><div class="quiz-opt-letter">A</div>Todas las fuentes deben ser de los últimos 2 años.</div><div class="quiz-opt" onclick="answer(this,'q2','wrong')"><div class="quiz-opt-letter">B</div>No existe criterio de antigüedad si las fuentes son académicas.</div><div class="quiz-opt" onclick="answer(this,'q2','correct')"><div class="quiz-opt-letter">C</div>Al menos el 80% de las fuentes debe tener una antigüedad máxima de 5 años.</div><div class="quiz-opt" onclick="answer(this,'q2','wrong')"><div class="quiz-opt-letter">D</div>Solo el 50% necesita ser reciente; el resto puede ser clásico.</div></div><div class="quiz-feedback correct" id="q2-ok">✅ <strong>¡Correcto!</strong> El 80% de las fuentes debe tener una antigüedad máxima de 5 años.</div><div class="quiz-feedback wrong" id="q2-fail">❌ <strong>Incorrecto.</strong> Al menos el 80% de las fuentes debe tener antigüedad máxima de 5 años.</div></div>
-      <div class="quiz-q" id="q3"><div class="quiz-q-num">Pregunta 3 de 7</div><div class="quiz-q-text">Un estudiante organiza su marco teórico con capítulos: 1) Historia de la educación mundial, 2) Sociología del deporte, 3) Rendimiento académico en Chile. Su tema es motivación en Educación Física. ¿Cuál es el problema?</div><div class="quiz-options"><div class="quiz-opt" onclick="answer(this,'q3','wrong')"><div class="quiz-opt-letter">A</div>Tiene muy pocos capítulos.</div><div class="quiz-opt" onclick="answer(this,'q3','wrong')"><div class="quiz-opt-letter">B</div>Los títulos son demasiado específicos.</div><div class="quiz-opt" onclick="answer(this,'q3','correct')"><div class="quiz-opt-letter">C</div>Los capítulos no se vinculan al problema de investigación ni tienen lógica argumental.</div><div class="quiz-opt" onclick="answer(this,'q3','wrong')"><div class="quiz-opt-letter">D</div>Falta un capítulo sobre metodología.</div></div><div class="quiz-feedback correct" id="q3-ok">✅ <strong>¡Muy bien!</strong> Los capítulos deben vincularse directamente al problema. Por ejemplo: 1) Motivación estudiantil, 2) EF y aprendizaje, 3) Factores en contextos de EF en Chile.</div><div class="quiz-feedback wrong" id="q3-fail">❌ <strong>Piénsalo.</strong> Ningún capítulo está vinculado al tema: motivación en EF. Ese es el error central.</div></div>
+      <div class="quiz-q" id="q3"><div class="quiz-q-num">Pregunta 3 de 7</div><div class="quiz-q-text">Un estudiante organiza su marco teórico con capítulos: 1) Historia de la educación mundial, 2) Sociología del deporte, 3) Rendimiento académico en Chile. Su tema es motivación en Educación Física. ¿En qué se está equivocando?</div><div class="quiz-options"><div class="quiz-opt" onclick="answer(this,'q3','wrong')"><div class="quiz-opt-letter">A</div>Tiene muy pocos capítulos.</div><div class="quiz-opt" onclick="answer(this,'q3','wrong')"><div class="quiz-opt-letter">B</div>Los títulos son demasiado específicos.</div><div class="quiz-opt" onclick="answer(this,'q3','correct')"><div class="quiz-opt-letter">C</div>Los capítulos no se vinculan al problema de investigación ni tienen lógica argumental.</div><div class="quiz-opt" onclick="answer(this,'q3','wrong')"><div class="quiz-opt-letter">D</div>Falta un capítulo sobre metodología.</div></div><div class="quiz-feedback correct" id="q3-ok">✅ <strong>¡Muy bien!</strong> Los capítulos deben vincularse directamente al problema. Por ejemplo: 1) Motivación estudiantil, 2) EF y aprendizaje, 3) Factores en contextos de EF en Chile.</div><div class="quiz-feedback wrong" id="q3-fail">❌ <strong>Piénsalo.</strong> Ningún capítulo está vinculado al tema: motivación en EF. Ese es el error central.</div></div>
       <div class="quiz-q" id="q4"><div class="quiz-q-num">Pregunta 4 de 7</div><div class="quiz-q-text">¿Cuál de las siguientes fuentes NO es adecuada para el marco teórico?</div><div class="quiz-options"><div class="quiz-opt" onclick="answer(this,'q4','wrong')"><div class="quiz-opt-letter">A</div>Un artículo de Scielo publicado en 2022.</div><div class="quiz-opt" onclick="answer(this,'q4','wrong')"><div class="quiz-opt-letter">B</div>Una tesis de maestría de la Universidad de Chile, 2021.</div><div class="quiz-opt" onclick="answer(this,'q4','correct')"><div class="quiz-opt-letter">C</div>Una entrada de Wikipedia sobre motivación.</div><div class="quiz-opt" onclick="answer(this,'q4','wrong')"><div class="quiz-opt-letter">D</div>Un libro de Hernández Sampieri publicado por McGraw-Hill.</div></div><div class="quiz-feedback correct" id="q4-ok">✅ <strong>¡Correcto!</strong> Wikipedia no tiene revisión por pares. Usa artículos indexados, tesis y libros académicos.</div><div class="quiz-feedback wrong" id="q4-fail">❌ La fuente inadecuada es Wikipedia. Las otras son fuentes académicas válidas.</div></div>
-      <div class="quiz-q" id="q5"><div class="quiz-q-num">Pregunta 5 de 7</div><div class="quiz-q-text">¿Cuál es la diferencia principal entre la fundamentación y el marco teórico?</div><div class="quiz-options"><div class="quiz-opt" onclick="answer(this,'q5','wrong')"><div class="quiz-opt-letter">A</div>La fundamentación usa fuentes internacionales y el marco teórico solo nacionales.</div><div class="quiz-opt" onclick="answer(this,'q5','wrong')"><div class="quiz-opt-letter">B</div>No hay diferencia; el marco teórico es básicamente lo mismo pero más largo.</div><div class="quiz-opt" onclick="answer(this,'q5','correct')"><div class="quiz-opt-letter">C</div>La fundamentación esboza los conceptos brevemente; el marco teórico los desarrolla con profundidad en capítulos articulados.</div><div class="quiz-opt" onclick="answer(this,'q5','wrong')"><div class="quiz-opt-letter">D</div>La fundamentación se escribe al principio y el marco teórico al final del proceso.</div></div><div class="quiz-feedback correct" id="q5-ok">✅ <strong>¡Excelente!</strong> La fundamentación es el primer acercamiento; el marco teórico lo profundiza y organiza sistemáticamente.</div><div class="quiz-feedback wrong" id="q5-fail">❌ La diferencia clave es de profundidad y organización, no de momento ni de origen de fuentes.</div></div>
-      <div class="quiz-q" id="q6"><div class="quiz-q-num">Pregunta 6 de 7</div><div class="quiz-q-text">¿Cuál de los siguientes textos corresponde a una redacción académica correcta?</div><div class="quiz-options"><div class="quiz-opt" onclick="answer(this,'q6','wrong')"><div class="quiz-opt-letter">A</div>"Yo creo que la convivencia escolar es muy importante porque en mis prácticas vi muchos problemas."</div><div class="quiz-opt" onclick="answer(this,'q6','correct')"><div class="quiz-opt-letter">B</div>"La convivencia escolar constituye un elemento central en la calidad del proceso educativo, en tanto afecta directamente el clima de aula (Ascorra et al., 2016)."</div><div class="quiz-opt" onclick="answer(this,'q6','wrong')"><div class="quiz-opt-letter">C</div>"Según Wikipedia, la convivencia escolar es el conjunto de relaciones que se dan en el espacio escolar."</div><div class="quiz-opt" onclick="answer(this,'q6','wrong')"><div class="quiz-opt-letter">D</div>"La convivencia escolar es importante. Hay muchos estudios. Varios autores hablan de esto."</div></div><div class="quiz-feedback correct" id="q6-ok">✅ <strong>¡Correcto!</strong> La opción B usa tercera persona, desarrolla la idea con precisión y la respalda con cita APA.</div><div class="quiz-feedback wrong" id="q6-fail">❌ La correcta es la B: tercera persona, precisión conceptual y cita en APA.</div></div>
+      <div class="quiz-q" id="q5"><div class="quiz-q-num">Pregunta 5 de 7</div><div class="quiz-q-text">¿Cuál es la diferencia principal entre la fundamentación y el marco teórico?</div><div class="quiz-options"><div class="quiz-opt" onclick="answer(this,'q5','wrong')"><div class="quiz-opt-letter">A</div>La fundamentación usa fuentes internacionales solo de organismos educativos y el marco teórico solo nacionales.</div><div class="quiz-opt" onclick="answer(this,'q5','wrong')"><div class="quiz-opt-letter">B</div>No hay diferencia; el marco teórico es básicamente lo mismo pero más largo.</div><div class="quiz-opt" onclick="answer(this,'q5','correct')"><div class="quiz-opt-letter">C</div>La fundamentación esboza los conceptos, normativas, y resultados brevemente; el marco teórico los desarrolla con profundidad en capítulos articulados.</div><div class="quiz-opt" onclick="answer(this,'q5','wrong')"><div class="quiz-opt-letter">D</div>La fundamentación se escribe al principio del proceso de investigación y el marco teórico solo en las conclusiones.</div></div><div class="quiz-feedback correct" id="q5-ok">✅ <strong>¡Excelente!</strong> La fundamentación es el primer acercamiento; el marco teórico lo profundiza y organiza sistemáticamente.</div><div class="quiz-feedback wrong" id="q5-fail">❌ La diferencia clave es de profundidad y organización, no de momento ni de origen de fuentes.</div></div>
+      <div class="quiz-q" id="q6"><div class="quiz-q-num">Pregunta 6 de 7</div><div class="quiz-q-text">¿Cuál de los siguientes enunciados corresponde a una redacción académica correcta?</div><div class="quiz-options"><div class="quiz-opt" onclick="answer(this,'q6','wrong')"><div class="quiz-opt-letter">A</div>"Yo creo que la convivencia escolar es muy importante porque en mis prácticas vi muchos problemas."</div><div class="quiz-opt" onclick="answer(this,'q6','correct')"><div class="quiz-opt-letter">B</div>"La convivencia escolar constituye un elemento central en la calidad del proceso educativo, en tanto afecta directamente el clima de aula (Ascorra et al., 2016)."</div><div class="quiz-opt" onclick="answer(this,'q6','wrong')"><div class="quiz-opt-letter">C</div>"Según Wikipedia, la convivencia escolar es el conjunto de relaciones que se dan en el espacio escolar."</div><div class="quiz-opt" onclick="answer(this,'q6','wrong')"><div class="quiz-opt-letter">D</div>"La convivencia escolar es importante. Hay muchos estudios. Varios autores hablan de esto."</div></div><div class="quiz-feedback correct" id="q6-ok">✅ <strong>¡Correcto!</strong> La opción B usa tercera persona, desarrolla la idea con precisión y la respalda con cita APA.</div><div class="quiz-feedback wrong" id="q6-fail">❌ La correcta es la B: tercera persona, precisión conceptual y cita en APA.</div></div>
       <div class="quiz-q" id="q7"><div class="quiz-q-num">Pregunta 7 de 7</div><div class="quiz-q-text">¿Cuántas revistas científicas distintas se recomienda consultar como mínimo?</div><div class="quiz-options"><div class="quiz-opt" onclick="answer(this,'q7','wrong')"><div class="quiz-opt-letter">A</div>Solo una, pero que sea reconocida.</div><div class="quiz-opt" onclick="answer(this,'q7','wrong')"><div class="quiz-opt-letter">B</div>Dos: una nacional y una internacional.</div><div class="quiz-opt" onclick="answer(this,'q7','correct')"><div class="quiz-opt-letter">C</div>Al menos 3 revistas científicas distintas del área.</div><div class="quiz-opt" onclick="answer(this,'q7','wrong')"><div class="quiz-opt-letter">D</div>No importa el número, solo que sean académicas.</div></div><div class="quiz-feedback correct" id="q7-ok">✅ <strong>¡Correcto!</strong> Al menos 3 revistas distintas garantizan diversidad de perspectivas.</div><div class="quiz-feedback wrong" id="q7-fail">❌ Se deben consultar al menos 3 revistas científicas distintas del área.</div></div>
       <div class="quiz-actions"><button class="btn-quiz" onclick="submitQuiz()">Ver resultado final</button><button class="btn-quiz secondary" onclick="resetQuiz()">Reiniciar quiz</button></div>
       <div class="quiz-score" id="quiz-score"><div class="score-badge" id="score-num">0/7</div><h4 id="score-title">—</h4><p id="score-msg">—</p></div>
@@ -659,9 +686,9 @@ body{font-family:var(--font-body);background:var(--gray-50);color:var(--gray-900
       <div class="cl-item" onclick="toggleCheck(this)"><input type="checkbox"><label>¿Cada capítulo se vincula directamente con mi problema de investigación?</label></div>
       <div class="cl-item" onclick="toggleCheck(this)"><input type="checkbox"><label>¿Los títulos de los capítulos son precisos y representan bien el contenido?</label></div>
     </div></div>
-    <div class="cl-section"><div class="cl-head cl-amber">📋 Comprensión conceptual</div><div class="cl-items">
+    <div class="cl-section"><div class="cl-head cl-amber">📋 Comprensión teórica</div><div class="cl-items">
       <div class="cl-item" onclick="toggleCheck(this)"><input type="checkbox"><label>¿El marco teórico profundiza la fundamentación sin repetirla?</label></div>
-      <div class="cl-item" onclick="toggleCheck(this)"><input type="checkbox"><label>¿Usé tono académico y por qué no se usa primera persona?</label></div>
+      <div class="cl-item" onclick="toggleCheck(this)"><input type="checkbox"><label>¿Usé tono académico sin usar primera persona?</label></div>
       <div class="cl-item" onclick="toggleCheck(this)"><input type="checkbox"><label>¿Comprendo la diferencia entre parafrasear y copiar citas?</label></div>
       <div class="cl-item" onclick="toggleCheck(this)"><input type="checkbox"><label>¿Completé los ejercicios interactivos de esta guía?</label></div>
     </div></div>
